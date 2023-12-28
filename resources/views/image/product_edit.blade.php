@@ -31,7 +31,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-4 col-xs-6">
-                                <span class="btn btn-success cropx" style="display:none" onclick="croppear('gallery')"><i class="fa fa-crop" aria-hidden="true"></i> Recortar </span>    
+                                <span class="btn btn-success cropx" style="display:none" onclick="croppear('gallery')"><i class="fa fa-crop" aria-hidden="true"></i> Recortar </span>
                             </div>
                         </div>
                     </div>
@@ -89,8 +89,8 @@
         <input style="display:none" name="id" type="text" value="{{$producto->id}}">
         <input style="display:none" id="datos_imgs" name="datos_imgs" type="text">
         @if ($producto->imagenes->count() == 0)
-            <button id="updateOrden" type="submit" style="display: none" class="btn btn-success" onclick="update()">Save</button>   
-        @endif       
+            <button id="updateOrden" type="submit" style="display: none" class="btn btn-success" onclick="update()">Save</button>
+        @endif
     </form>
 
 
@@ -120,10 +120,10 @@
         datos_imgs.value = "";
         for (var i = 0; i < es.length; i++) {
             var e = es[i];
-            imgs_sort.push({name: e.id, peso: i})            
+            imgs_sort.push({name: e.id, peso: i})
         }
         datos_imgs.value = JSON.stringify(imgs_sort);
-        
+
         // Simple list
         sortable = Sortable.create(el);
         sortable = new Sortable(el, {
@@ -298,11 +298,11 @@
         es_gallery.value = 'true';
         for (let i = 0; i < buttonsCrop.length; i++) {
                 buttonsCrop[i].style.display = "none";
-                upload_button.style.display = "inline-block";               
+                upload_button.style.display = "inline-block";
         }
         var image_show = document.getElementById("image_show");
         var cropper = new Cropper(image_show, {aspectRatio: aspectRatio,
-            crop(e) { 
+            crop(e) {
                 var i = e.detail;
                 imgData.x = i.x;
                 imgData.y = i.y;

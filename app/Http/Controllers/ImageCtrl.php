@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Image;
+use DB;
 
-class ProductImageCtrl extends Controller
+class ImageCtrl extends Controller
 {
-    //
 
-    public function edit(Request $request)
+    public function edit($store_url, $product_url)
     {
-        $slug = Str::after(url()->full(), 'image-edit/');
-        $producto = Product::where('slug', $slug)->firstOrFail();
+        $producto = Product::where('url', $product_url)->firstOrFail();
         $title = $producto->nombre;
 
-        return view('image.product_edit', compact('producto', 'title'));
+        return view('products.image_edit', compact('producto', 'title'));
     }
 
     public function save(Request $request)
@@ -85,7 +85,7 @@ class ProductImageCtrl extends Controller
     public function delete(Request $req)
     {
         if (true) {
-            $imagen = ProductImage::findOrFail($req->id);
+            $imagen = Imagen::findOrFail($req->id);
             //$producto = $imagen->producto;
             $producto = Product::findOrFail($req->producto_id);
 

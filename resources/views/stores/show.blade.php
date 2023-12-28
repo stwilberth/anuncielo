@@ -118,6 +118,17 @@
                     </div>
                 </div>
 
+                <div class="mt-6">
+                    <h2 class="mb-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white text-center">Productos</h2>
+                    <div class="mt-6">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                            @foreach ($store->products as $product)
+                                <x-product :product="$product" />
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

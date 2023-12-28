@@ -177,11 +177,12 @@ use anuncielo;
         ('Producto de prueba 15', 'producto-de-prueba-15', 'Descripción de producto de prueba 15', 15000, 1, 1);
 
 
-//ProductImage model
+-- ProductImage
     CREATE TABLE product_images (
         id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
         product_id BIGINT(20) unsigned NOT NULL,
-        image_url VARCHAR(255) NOT NULL,
+        url VARCHAR(255) NOT NULL,
         type int(1) NOT NULL DEFAULT 0,
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
