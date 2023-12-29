@@ -19,7 +19,12 @@
                 <div class="p-4">
                     <div class="flex flex-col md:flex-row">
                         <div class="w-full md:w-1/2">
-                            <img src="{{ $product->image }}" alt="{{ $product->name }}" class="object-cover w-full h-64 rounded-md">
+
+                            @if($product->images && $product->images->count() > 0)
+                                <x-carousel :url_base="asset('storage/stores/' . $product->store->url . '/products')" :images="$product->images" />
+                            @else
+                                <img src="{{ asset('img/no-image.png') }}" alt="No image" class="object-cover w-full h-64 rounded-md">
+                            @endif
                         </div>
                         <div class="w-full md:w-1/2 p-4">
                             <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ $product->name }}</p>
@@ -39,7 +44,7 @@
                                 <a href="{{ route('dashboard.products.edit', ['store_url' => $store->url, 'product_url' => $product->url]) }}" class="mx-4 px-4 py-2 text-white font-semibold bg-blue-500 dark:bg-blue-700 rounded">Edit</a>
 
                                 {{-- edit image --}}
-                                <a href="{{ route('imageEdit', ['store_url' => $store->url, 'product_url' => $product->url]) }}" class="mx-4 px-4 py-2 text-white font-semibold bg-blue-500 dark:bg-blue-700 rounded">Edit Image</a>
+                                <a href="{{ route('addImage', ['store_url' => $store->url, 'product_url' => $product->url]) }}" class="mx-4 px-4 py-2 text-white font-semibold bg-blue-500 dark:bg-blue-700 rounded">Agregar Imagen</a>
 
                                 {{-- delete --}}
                                 {{-- <form action="{{ route('products.destroy', $product->id) }}" method="POST">

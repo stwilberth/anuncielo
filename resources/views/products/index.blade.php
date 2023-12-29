@@ -13,14 +13,14 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="p-4">
-                    <h1 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">{{ $store->name }}</h1>
+                    <h1 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Productos</h1>
                 </div>
 
                 <div class="mt-6">
                     <h2 class="mb-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white text-center">Productos</h2>
                     <div class="mt-6">
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                            @foreach ($store->products as $product)
+                            @foreach ($products as $product)
                                 <x-product :product="$product" />
                             @endforeach
                         </div>

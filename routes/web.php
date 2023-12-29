@@ -35,8 +35,8 @@ Route::view('/', 'welcome');
 Route::view('profile', 'profile')->middleware(['auth'])->name('profile');
 
 //edicion de imagenes
-Route::get('stores/{store_url}/products/{product_url}/image-edit', [ImageCtrl::class, 'edit'])->name('imageEdit')->middleware(['auth']);
-Route::post('/image-save', [ImageCtrl::class, 'save'])->name('imageSave')->middleware(['auth']);
+Route::get('stores/{store_url}/products/{product_url}/add-image', [ImageCtrl::class, 'add'])->name('addImage')->middleware(['auth']);
+Route::post('stores/{store_url}/products/{product_url}/save-image', [ImageCtrl::class, 'save'])->name('saveImage')->middleware(['auth']);
 Route::post('/image-update', [ImageCtrl::class, 'update'])->name('imageUpdate')->middleware(['auth']);
 Route::post('/image-delete', [ImageCtrl::class, 'delete'])->name('imageDelete')->middleware(['auth']);
 

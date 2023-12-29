@@ -189,6 +189,9 @@ use anuncielo;
         FOREIGN KEY (product_id) REFERENCES products(id)
     );
 
+    -- combinacion url y product_id unica
+    ALTER TABLE product_images ADD UNIQUE KEY unique_product_image_url (product_id, url);
+
 
 
 

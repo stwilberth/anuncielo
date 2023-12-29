@@ -34,8 +34,12 @@ class Product extends Model
     }
 
     //add image
-    public function addImage(ProductImage $image)
+    public function addImage($name, $url)
     {
-        return $this->images()->save($image);
+        return $this->images()->create([
+            'name' => $name,
+            'url' => $url,
+            'type' => 1,
+        ]);
     }
 }
