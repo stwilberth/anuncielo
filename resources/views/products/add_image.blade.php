@@ -52,8 +52,49 @@
 
                                 {{-- input img --}}
                                 <div class="mt-5">
-                                    <input type="file" id="inputImg" name="img" accept="image/*" onchange="onchace(this)">
+                                    <input type="file" id="inputImg" name="img" accept="image/*" @if($producto->images->count() == 0) onchange="onchace(this, true)" @else onchange="onchace(this, false)" @endif>
                                 </div>
+
+                                {{-- select aspect ratio --}}
+                                @if ($producto->images->count() == 0)
+                                    <div class="mt-5 flex justify-center">
+                                        <div class="relative inline-flex">
+                                            <select id="aspect_ratio" name="aspect_ratio" onchange="croppear()" class="appearance-none bg-white border border-gray-300 px-4 py-2 rounded-lg shadow-sm text-sm focus:outline-none focus:border-indigo-500" required>
+                                                <option value="">Medidas</option>
+                                                <option value="1">1:1</option>
+                                                <option value="2">3:2</option>
+                                                <option value="3">4:3</option>
+                                                <option value="4">16:9</option>
+                                                <!-- Puedes agregar más opciones según sea necesario -->
+                                            </select>
+                                            <span class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crop"><path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path><path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path></svg> --}}
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m7.848 8.25 1.536.887M7.848 8.25a3 3 0 1 1-5.196-3 3 3 0 0 1 5.196 3Zm1.536.887a2.165 2.165 0 0 1 1.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 1 1-5.196 3 3 3 0 0 1 5.196-3Zm1.536-.887a2.165 2.165 0 0 0 1.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863 2.077-1.199m0-3.328a4.323 4.323 0 0 1 2.068-1.379l5.325-1.628a4.5 4.5 0 0 1 2.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.33 4.33 0 0 0 10.607 12m3.736 0 7.794 4.5-.802.215a4.5 4.5 0 0 1-2.48-.043l-5.326-1.629a4.324 4.324 0 0 1-2.068-1.379M14.343 12l-2.882 1.664" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="mt-5 flex justify-center">
+                                        <div class="relative inline-flex">
+                                            <select id="aspect_ratio" name="aspect_ratio" disabled class="appearance-none bg-white border border-gray-300 px-4 py-2 rounded-lg shadow-sm text-sm focus:outline-none focus:border-indigo-500">
+                                                <option value="1" @if($producto->images->first()->aspect_ratio == 1) selected @endif>1:1</option>
+                                                <option value="2" @if($producto->images->first()->aspect_ratio == 2) selected @endif>3:2</option>
+                                                <option value="3" @if($producto->images->first()->aspect_ratio == 3) selected @endif>4:3</option>
+                                                <option value="4" @if($producto->images->first()->aspect_ratio == 4) selected @endif>16:9</option>
+                                                <!-- Puedes agregar más opciones según sea necesario -->
+                                            </select>
+                                            <span class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crop"><path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path><path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path></svg> --}}
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m7.848 8.25 1.536.887M7.848 8.25a3 3 0 1 1-5.196-3 3 3 0 0 1 5.196 3Zm1.536.887a2.165 2.165 0 0 1 1.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 1 1-5.196 3 3 3 0 0 1 5.196-3Zm1.536-.887a2.165 2.165 0 0 0 1.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863 2.077-1.199m0-3.328a4.323 4.323 0 0 1 2.068-1.379l5.325-1.628a4.5 4.5 0 0 1 2.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.33 4.33 0 0 0 10.607 12m3.736 0 7.794 4.5-.802.215a4.5 4.5 0 0 1-2.48-.043l-5.326-1.629a4.324 4.324 0 0 1-2.068-1.379M14.343 12l-2.882 1.664" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                @endif
 
                                 {{-- crop --}}
                                 <div class="mt-5 flex justify-center">
@@ -104,7 +145,10 @@
             }
 
             //recortar la imagen
+            let cropper;
+            let aspectRatio = 1;
             function croppear () {
+                var image_show = document.getElementById("image_show");
                 var imgData = {
                     resume: false,
                     order: "",
@@ -114,13 +158,32 @@
                     width: "",
                     height: ""
                 }
-                var aspectRatio = 1 / 1;
+                aspectRatio = document.getElementById("aspect_ratio").value;
+
+                if (aspectRatio == 1) {
+                    aspectRatio = 1;
+                } else if (aspectRatio == 2) {
+                    aspectRatio = 3 / 2;
+                } else if (aspectRatio == 3) {
+                    aspectRatio = 4 / 3;
+                } else if (aspectRatio == 4) {
+                    aspectRatio = 16 / 9;
+                } else {
+                    aspectRatio = NaN;
+                    alert("Seleccione una medida");
+                    return;
+                }
+
                 for (let i = 0; i < buttonsCrop.length; i++) {
                         buttonsCrop[i].style.display = "none";
                         upload_button.style.display = "inline-block";
                 }
-                var image_show = document.getElementById("image_show");
-                var cropper = new Cropper(image_show, {aspectRatio: aspectRatio,
+
+                if(cropper) {
+                    cropper.destroy();
+                }
+
+                cropper = new Cropper(image_show, {aspectRatio: aspectRatio,
                     crop(e) {
                         var i = e.detail;
                         imgData.x = i.x;
@@ -134,7 +197,7 @@
 
 
             //seleccionar y mostrar imagen
-            function onchace(e) {
+            function onchace(e, first) {
                 inputMedidasCrop.value = "";
                 if (image_show) {
                     image_show.remove();
@@ -156,38 +219,13 @@
                             buttonsCrop[i].style.display = "inline-block";
                             upload_button.style.display = "none";
                         }
-
-                        var imgData = {
-                            resume: false,
-                            order: "",
-                            name: "",
-                            x: "",
-                            y: "",
-                            width: "",
-                            height: ""
-                        }
-                        var aspectRatio = 214 / 135;
-                        for (let i = 0; i < buttonsCrop.length; i++) {
-                                buttonsCrop[i].style.display = "none";
-                                upload_button.style.display = "inline-block";
-                        }
-                        var image_show = document.getElementById("image_show");
-                        var cropper = new Cropper(image_show, {aspectRatio: aspectRatio,
-                            crop(e) {
-                                var i = e.detail;
-                                imgData.x = i.x;
-                                imgData.y = i.y;
-                                imgData.w = i.width;
-                                imgData.h = i.height;
-                                inputMedidasCrop.value = JSON.stringify(imgData);
-                            },
-                        });
-
                         upload_button.style.display = "block";
 
+                        if (!first) {
+                            croppear();
+                        }
                     }
                 }
-
             }
 
             //funcion principal
