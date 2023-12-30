@@ -5,22 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductImage extends Model
+class StoreImage extends Model
 {
     use HasFactory;
 
-    //fillable
     protected $fillable = [
-        'product_id',
-        'url',
         'name',
+        'store_id',
+        'url',
         'type',
         'aspect_ratio'
     ];
 
-    //product
-    public function product()
+    public function store()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Store::class);
     }
 }

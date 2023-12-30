@@ -54,7 +54,6 @@ use anuncielo;
         UNIQUE (url)
     );
 
-
 -- insertar tienda de prueba
     INSERT INTO stores (name, description, payment_methods, shipping_methods, url, user_id, phone, whatsapp, country, address, physical, email, facebook_url, instagram_url)
     VALUES
@@ -128,6 +127,7 @@ use anuncielo;
         UNIQUE KEY unique_store_url (store_id, url)
     );
 
+
     use anuncielo;
     --add column url not NULL
     ALTER TABLE products ADD url VARCHAR(255) NOT NULL AFTER name;
@@ -176,7 +176,6 @@ use anuncielo;
         ('Producto de prueba 14', 'producto-de-prueba-14', 'Descripción de producto de prueba 14', 14000, 1, 1),
         ('Producto de prueba 15', 'producto-de-prueba-15', 'Descripción de producto de prueba 15', 15000, 1, 1);
 
-
 -- ProductImage
     CREATE TABLE product_images (
         id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
@@ -193,8 +192,29 @@ use anuncielo;
     ALTER TABLE product_images ADD UNIQUE KEY unique_product_image_url (product_id, url);
 
 
+    -- add column aspect_ratio tynint NULL
+    ALTER TABLE product_images ADD aspect_ratio TINYINT(1) NOT NULL after type;
 
+    -- the column aspect_ratio cant be cero
+    ALTER TABLE product_images MODIFY aspect_ratio TINYINT(1) NOT NULL DEFAULT 1;
 
+-- crear tabla store_images con par unico de store_id y url
+    CREATE TABLE store_images (
+        id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        store_id BIGINT(20) unsigned NOT NULL,
+        url VARCHAR(255) NOT NULL,
+        type int(1) NOT NULL DEFAULT 0,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (store_id) REFERENCES stores(id)
+    );
+
+    -- combinacion url y store_id unica
+    ALTER TABLE store_images ADD UNIQUE KEY unique_store_image_url (store_id, url);
+
+    -- add column aspect_ratio tynint NULL
+    ALTER TABLE store_images ADD aspect_ratio TINYINT(1) NOT NULL after type;
 
 
 

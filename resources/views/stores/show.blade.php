@@ -17,7 +17,11 @@
                 </div>
 
                 <div class="w-full mb-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
-                    <img src="/portada.webp" alt="{{ $store->name }}" class="w-full h-full object-cover">
+                    @if($store->images->count() > 0)
+                        <img src="{{ asset('storage/stores/' . $store->url . '/images') }}/{{ $store->images->first()->url }}" alt="{{ $store->name }}" class="w-full h-full object-cover">
+                    @else
+                        <img src="/portada.webp" alt="{{ $store->name }}" class="w-full h-full object-cover">
+                    @endif
                 </div>
 
                 <div class="w-full mb-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -113,6 +117,10 @@
                             <p class="mb-3 text-gray-500 dark:text-gray-400">
                                 {{-- create product link --}}
                                 <a href="{{ route('dashboard.products.create', $store->url) }}" class="text-blue-600 hover:text-blue-700">Crear Producto</a>
+                            </p>
+                            <p class="mb-3 text-gray-500 dark:text-gray-400">
+                                {{-- add images link --}}
+                                <a href="{{ route('dashboard.stores.addImageCover', $store->url) }}" class="text-blue-600 hover:text-blue-700">Agregar Imagen de Portada</a>
                             </p>
                         </div>
                     </div>

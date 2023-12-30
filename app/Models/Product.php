@@ -34,12 +34,19 @@ class Product extends Model
     }
 
     //add image
-    public function addImage($name, $url)
+    public function addImage($name, $url, $aspect_ratio = 0)
     {
+        
+        //si ya hay imagenes se usa el aspect ratio de la primera
+        if ($this->images->count() > 0) {
+            $aspect_ratio = $this->images->first()->aspect_ratio;
+        }
+
         return $this->images()->create([
             'name' => $name,
             'url' => $url,
             'type' => 1,
+            'aspect_ratio' => (int)$aspect_ratio
         ]);
     }
 }
