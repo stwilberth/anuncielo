@@ -23,7 +23,11 @@
                             @if($product->images && $product->images->count() > 0)
                                 <x-carousel :url_base="asset('storage/stores/' . $product->store->url . '/products')" :images="$product->images" />
                             @else
-                                <img src="{{ asset('img/no-image.png') }}" alt="No image" class="object-cover w-full h-64 rounded-md">
+                                {{-- div con texto producto sin imagen --}}
+                            <div class="flex justify-center items-center h-full bg-gray-100 shadow-md rounded-lg">
+                                <p class="text-xl font-semibold text-gray-900 dark:text-white">Producto sin foto</p>
+                            </div>
+
                             @endif
                         </div>
                         <div class="w-full md:w-1/2 p-4">
@@ -40,6 +44,7 @@
                                 {{-- back --}}
                                 <a href="{{ route('products.index') }}" class="px-4 py-2 text-white font-semibold bg-gray-900 dark:bg-gray-700 rounded">Back</a>
 
+                            @if($store->userIsOwner())
                                 {{-- edit --}}
                                 <a href="{{ route('dashboard.products.edit', ['store_url' => $store->url, 'product_url' => $product->url]) }}" class="mx-4 px-4 py-2 text-white font-semibold bg-blue-500 dark:bg-blue-700 rounded">Edit</a>
 
@@ -47,11 +52,19 @@
                                 <a href="{{ route('addImage', ['store_url' => $store->url, 'product_url' => $product->url]) }}" class="mx-4 px-4 py-2 text-white font-semibold bg-blue-500 dark:bg-blue-700 rounded">Agregar Imagen</a>
 
                                 {{-- delete --}}
-                                {{-- <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="px-4 py-2 text-white font-semibold bg-red-500 dark:bg-red-700 rounded">Delete</button>
-                                </form> --}}
+                                <button
+                                    data-modal-target="delete_product_modal"
+                                    data-modal-toggle="delete_product_modal"
+                                    class="px-4 py-2 text-white font-semibold bg-red-500 dark:bg-red-700 rounded">Eliminar</button>
+                                <x-modal-warning modal-id="delete_product_modal" modal-title="¿Realmente desea eliminar este producto?">
+                                    <form action="{{ route('dashboard.products.delete', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="px-4 py-2 text-white font-semibold bg-red-500 dark:bg-red-700 rounded">Sí, Eliminar</button>
+                                    </form>
+                                </x-modal-warning>
+                            @endif
+
 
                             </div>
                         </div>

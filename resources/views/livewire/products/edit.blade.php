@@ -30,6 +30,12 @@ mount(function ($store_url, $product_url) {
 
     //busca la store por el url
     $this->store = Store::where('url', $store_url)->firstOrFail();
+    //verifica que el usuario sea el dueño de la tienda
+    if ($this->store->user_id != Auth::id()) {
+        return redirect()->route('stores.index');
+    }
+
+    //busca el producto por el url
     $product = $this->store->products->where('url', $product_url)->firstOrFail();
 
     $this->id = $product->id;
@@ -48,7 +54,7 @@ mount(function ($store_url, $product_url) {
 //falta probar que admita misma url para el mismo producto
 rules(fn () => [
     'name' => 'required|max:255',
-    'description' => 'required|max:1000',
+    'description' => 'required|max:365',
     'url' => [
         'required',
         'string',
@@ -123,7 +129,11 @@ $create = function () {
 
                         <div class="mb-4">
                             <label for="description" class="block text-sm font-medium text-gray-700">Descripción</label>
-                            <textarea wire:model="description" id="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                            <textarea
+                                wire:model="description"
+                                id="description"
+                                maxlength="365"
+                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
                             @error('description') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
 

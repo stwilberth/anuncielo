@@ -37,4 +37,11 @@ class Store extends Model
             'aspect_ratio' => (int)$aspect_ratio
         ]);
     }
+
+    //check if user is owner of the store
+    public function userIsOwner()
+    {
+        return auth()->check() && (auth()->user()->id == $this->user_id);
+    }
+
 }

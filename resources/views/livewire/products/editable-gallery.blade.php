@@ -15,7 +15,7 @@ $deleteImage = function($id) {
     $image = ProductImage::findOrFail($id);
     $product = Product::findOrFail($image->product_id);
     if ($product->store->user_id != auth()->user()->id) {
-        abort(403);
+        return redirect()->route('stores.index');
     }
 
     try {

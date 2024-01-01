@@ -49,4 +49,10 @@ class Product extends Model
             'aspect_ratio' => (int)$aspect_ratio
         ]);
     }
+
+    //verificar si el usuario está logueado y es el dueño del producto
+    public function userIsOwner()
+    {
+        return auth()->check() && (auth()->user()->id == $this->user_id);
+    }
 }

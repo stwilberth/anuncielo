@@ -1,5 +1,6 @@
 
 use anuncielo;
+use apren173_anuncielo;
 
 -- tabla categorias
     CREATE TABLE categories (

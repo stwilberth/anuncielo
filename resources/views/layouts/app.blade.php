@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Anuncielo.com @isset($title_layout) | {{ $title_layout }} @endisset </title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -20,7 +20,12 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
+
+        @auth
             <livewire:layout.navigation />
+        @else
+            <livewire:layout.navigationguest />
+        @endauth
 
             <!-- Page Heading -->
             @if (isset($header))

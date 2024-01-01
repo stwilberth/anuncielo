@@ -19,6 +19,10 @@ class ImageCtrl extends Controller
     public function add($store_url, $product_url)
     {
         $producto = Product::where('url', $product_url)->firstOrFail();
+        //verificar que el producto pertenezca al usuario
+        if ($producto->user_id != auth()->user()->id) {
+            return redirect()->back()->with('error', 'Error al guardar la imagen: No tienes permisos para realizar esta acción.');
+        }
         $title = $producto->name;
 
         return view('products.add_image', compact('producto', 'title'));
@@ -123,6 +127,10 @@ class ImageCtrl extends Controller
     public function addImageCover($store_url)
     {
         $store = Store::where('url', $store_url)->firstOrFail();
+        //verificar que la tienda pertenezca al usuario
+        if ($store->user_id != auth()->user()->id) {
+            return redirect()->back()->with('error', 'Error al guardar la imagen: No tienes permisos para realizar esta acción.');
+        }
         $title = $store->name;
 
         return view('stores.add_image_cover', compact('store', 'title'));
@@ -133,16 +141,16 @@ class ImageCtrl extends Controller
         //dd($request->all());
 
         $Store = Store::where('url', $store_url)->firstOrFail();
+        //store pertenece a usuario
+        if ($Store->user_id != auth()->user()->id) {
+            return redirect()->back()->with('error', 'Error al guardar la imagen: No tienes permisos para realizar esta acción.');
+        }
 
         //solo permitir una imagen de portada
         if ($Store->images->count() > 0) {
             return redirect()->back()->with('error', 'Error al guardar la imagen: Ya existe una imagen de portada.');
         }
 
-        //store pertenece a usuario
-        if ($Store->user_id != auth()->user()->id) {
-            return redirect()->back()->with('error', 'Error al guardar la imagen: No tienes permisos para realizar esta acción.');
-        }
 
         //$imageCount = $Store->images->count();
 
