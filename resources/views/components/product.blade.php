@@ -1,7 +1,7 @@
 
 
 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
+    <a href="{{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}">
         @if ($product->images->count() > 0)
             <img class="p-8 rounded-t-lg" src="{{ asset('storage/stores/' . $product->store->url . '/products').'/'.$product->images->first()->url }}" alt="product image" />
         @else

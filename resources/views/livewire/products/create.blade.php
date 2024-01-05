@@ -32,7 +32,10 @@ mount(function ($store_url) {
     $store = Store::where('url', $store_url)->firstOrFail();
     $this->store = $store;
     $this->products = $store->products;
-
+    //no permitir mas de 10 productos
+    if($this->products->count() >= 9){
+        return redirect()->route('stores.show', $this->store->url)->with('message', 'Ha alcanzado el limite máximo de productos creados');
+    }
 });
 
 
@@ -55,6 +58,11 @@ rules(fn () => [
 
 
 $create = function () {
+
+    //no permitir mas de 10 productos
+    if($this->products->count() >= 9){
+        return redirect()->route('stores.show', $this->store->url)->with('message', 'Ha alcanzado el limite máximo de productos creados');
+    }
 
     $this->validate();
 

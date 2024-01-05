@@ -5,7 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Anuncielo.com @isset($title_layout) | {{ $title_layout }} @endisset </title>
+        @isset($meta_tags_layout)
+            {{ $meta_tags_layout }}
+        @else
+            <meta name="description" content="Anúncielo.com es un sitio web de anuncios clasificados en el que puedes publicar anuncios gratis y sin comisión.">
+            <title>Anúncielo.com</title>
+        @endisset
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

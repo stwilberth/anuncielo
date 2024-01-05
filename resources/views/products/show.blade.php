@@ -1,6 +1,11 @@
 
 
 <x-app-layout>
+    <x-slot name="meta_tags_layout">
+        <meta name="description" content="{{ $product->description }}">
+        <title>{{ $product->name }} | {{ $store->name }} | Anúncielo.com</title>
+    </x-slot>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $store->name }}

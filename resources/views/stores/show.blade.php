@@ -1,6 +1,10 @@
 
 
 <x-app-layout>
+    <x-slot name="meta_tags_layout">
+        <meta name="description" content="{{ $store->description }}">
+        <title>{{ $store->name }} | Anúncielo.com</title>
+    </x-slot>
     {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $store->name }}
@@ -129,7 +133,17 @@
                             <h2 class="mb-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Administrar</h2>
                             <p class="mb-3 text-gray-500 dark:text-gray-400">
                                 {{-- create product link --}}
-                                <a href="{{ route('dashboard.products.create', $store->url) }}" class="text-blue-600 hover:text-blue-700">Crear Producto</a>
+
+                                @if($store->products->count() >= 9)
+                                    <span class="text-red-500">No puedes crear más productos, has llegado al límite de 9 productos.</span>
+                                    <br>
+                                    <span class="text-green-500">Para crear más productos debes actualizar tu plan.</span>
+                                @else
+                                    <a href="{{ route('dashboard.products.create', $store->url) }}" class="text-blue-600 hover:text-blue-700">
+                                        Crear Producto
+                                    </a>
+                                @endif
+
                             </p>
                             <p class="mb-3 text-gray-500 dark:text-gray-400">
                                 {{-- add images link --}}

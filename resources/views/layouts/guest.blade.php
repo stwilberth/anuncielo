@@ -5,13 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        @isset($meta_tags_layout)
+            {{ $meta_tags_layout }}
+        @else
+            <meta name="description" content="Anúncielo.com es un sitio web de anuncios clasificados en el que puedes publicar anuncios gratis y sin comisión.">
+            <title>Anúncielo.com</title>
+        @endisset
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
+        @isset($scripts_layout_top)
+            {{ $scripts_layout_top }}
+        @endisset
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
@@ -26,5 +34,10 @@
                 {{ $slot }}
             </div>
         </div>
+
+        @isset($scripts_layout_bottom)
+            {{ $scripts_layout_bottom }}
+        @endisset
+
     </body>
 </html>
