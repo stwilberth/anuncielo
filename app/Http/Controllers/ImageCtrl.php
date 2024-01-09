@@ -43,6 +43,10 @@ class ImageCtrl extends Controller
 
         $imageCount = $Product->images->count();
 
+        //verificar que el producto no tenga mas de 5 imagenes
+        if ($imageCount >= 5) {
+            return redirect()->back()->with('error', 'Error al guardar la imagen: El producto ya tiene 5 imágenes.');
+        }
         // Validar la solicitud con condición
         $request->validate([
             'img' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',

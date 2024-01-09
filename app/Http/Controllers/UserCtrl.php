@@ -24,7 +24,7 @@ class UserCtrl extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-            'g-recaptcha-response' => 'recaptcha',
+            'g-recaptcha-response' => 'required|recaptcha',
         ]);
 
         $user = User::create([

@@ -60,7 +60,7 @@ rules(fn () => [
 $create = function () {
 
     //no permitir mas de 10 productos
-    if($this->products->count() >= 9){
+    if($this->products->count() >= 15){
         return redirect()->route('stores.show', $this->store->url)->with('message', 'Ha alcanzado el limite máximo de productos creados');
     }
 

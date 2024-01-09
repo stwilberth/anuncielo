@@ -135,7 +135,7 @@
                                 {{-- create product link --}}
 
                                 @if($store->products->count() >= 9)
-                                    <span class="text-red-500">No puedes crear más productos, has llegado al límite de 9 productos.</span>
+                                    <span class="text-red-500">No puedes crear más productos, has llegado al límite de 15 productos.</span>
                                     <br>
                                     <span class="text-green-500">Para crear más productos debes actualizar tu plan.</span>
                                 @else
