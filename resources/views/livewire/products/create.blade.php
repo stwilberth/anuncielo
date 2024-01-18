@@ -12,12 +12,12 @@ use Illuminate\Database\Query\Builder;
 
 state([
     'name' => '',
-    'description' => 'asdfasdf',
+    'description' => '',
     'url' => '',
-    'stock' => 1,
+    'stock' => 0,
     'category_id' => '',
     'published' => true,
-    'price' => '5',
+    'price' => 0,
     'url_valid' => false,
     'store' => null,
     'categories' => Category::all()->sortBy('name'),
@@ -166,6 +166,7 @@ $checkUrl = function () {
                                 wire:model="description"
                                 id="description"
                                 maxlength="365"
+                                rows="5"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
                             @error('description') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
