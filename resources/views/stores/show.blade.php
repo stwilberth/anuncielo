@@ -155,6 +155,11 @@
                                 @endif
                                 </a>
                             </p>
+
+                            {{-- edit store --}}
+                            <a href="{{ route('dashboard.stores.edit', $store->url) }}" class="text-blue-600 hover:text-blue-700">
+                                Editar Tienda
+                            </a>
                         </div>
                         @endif
                     </div>

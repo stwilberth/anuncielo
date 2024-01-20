@@ -19,7 +19,7 @@ use App\Http\Controllers\ImageCtrl;
 
 Volt::route('/dashboard/stores', 'stores.index')->name('dashboard.stores.index')->middleware(['auth']);
 Volt::route('/dashboard/stores/create', 'stores.create')->name('dashboard.stores.create')->middleware(['auth']);
-// Volt::route('/dashboard/stores/{store}/edit', 'stores.edit')->name('dashboard.stores.edit')->middleware(['auth']);
+Volt::route('/dashboard/stores/{store_url}/edit', 'stores.edit')->name('dashboard.stores.edit')->middleware(['auth']);
 Volt::route('/dashboard/stores/{store_url}/products/create', 'products.create')->name('dashboard.products.create')->middleware(['auth']);
 Volt::route('/dashboard/stores/{store_url}/products/{product_url}/edit', 'products.edit')->name('dashboard.products.edit')->middleware(['auth']);
 Route::delete('/dashboard/stores/{store_url}/products/{product_url}/delete', [ProductCtrl::class, 'delete'])->name('dashboard.products.delete')->middleware(['auth']);
