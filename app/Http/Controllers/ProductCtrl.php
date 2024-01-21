@@ -16,7 +16,17 @@ class ProductCtrl extends Controller
     {
         //get all products from all stores with pagination
         $products = Product::paginate(25);
-        return view('products.index', compact('products'));
+        $title = 'Productos de todas las tiendas';
+        return view('products.index', compact('products', 'title'));
+    }
+
+    //user's products
+    public function userProducts()
+    {
+        //get all products from all stores with pagination
+        $products = Product::where('user_id', auth()->user()->id)->paginate(25);
+        $title = 'Mis productos';
+        return view('products.index', compact('products', 'title'));
     }
 
     //show

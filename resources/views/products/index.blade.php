@@ -13,7 +13,7 @@
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <div class="p-4">
-                    <h1 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Productos de Todas las Tiendas</h1>
+                    <h1 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">{{ $title }}</h1>
                 </div>
 
                 <div class="mt-6">

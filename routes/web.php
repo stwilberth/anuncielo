@@ -23,6 +23,9 @@ Volt::route('/dashboard/stores/{store_url}/edit', 'stores.edit')->name('dashboar
 Volt::route('/dashboard/stores/{store_url}/products/create', 'products.create')->name('dashboard.products.create')->middleware(['auth']);
 Volt::route('/dashboard/stores/{store_url}/products/{product_url}/edit', 'products.edit')->name('dashboard.products.edit')->middleware(['auth']);
 Route::delete('/dashboard/stores/{store_url}/products/{product_url}/delete', [ProductCtrl::class, 'delete'])->name('dashboard.products.delete')->middleware(['auth']);
+//show user's products (no volt)
+Route::get('/dashboard/products', [ProductCtrl::class, 'userProducts'])->name('dashboard.products.index')->middleware(['auth']);
+
 
 Route::get('stores', [StoreCtrl::class, 'index'])->name('stores.index');
 Route::get('stores/{url}', [StoreCtrl::class, 'show'])->name('stores.show');
