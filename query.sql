@@ -218,9 +218,51 @@ use apren173_anuncielo;
     ALTER TABLE store_images ADD aspect_ratio TINYINT(1) NOT NULL after type;
 
 
+-- crear tabla business
+    CREATE TABLE business (
+        id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        description VARCHAR(255),
+        url VARCHAR(255) NOT NULL,
+        address VARCHAR(255) NOT NULL,
+        phone VARCHAR(20),
+        whatsapp VARCHAR(20),
+        country VARCHAR(10) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        facebook_url VARCHAR(255),
+        instagram_url VARCHAR(255),
+        category_id BIGINT(20) unsigned NOT NULL,
+        user_id BIGINT(20) unsigned NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        UNIQUE (url)
+    );
 
+    -- crear tabla business_images con par unico de business_id y url
+    CREATE TABLE business_images (
+        id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        business_id BIGINT(20) unsigned NOT NULL,
+        url VARCHAR(255) NOT NULL,
+        type int(1) NOT NULL DEFAULT 0,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (business_id) REFERENCES business(id)
+    );
 
+    -- combinacion url y business_id unica
+    ALTER TABLE business_images ADD UNIQUE KEY unique_business_image_url (business_id, url);
 
+    -- add column aspect_ratio tynint NULL
+    ALTER TABLE business_images ADD aspect_ratio TINYINT(1) NOT NULL after type;
+
+        -- the column aspect_ratio cant be cero
+    ALTER TABLE business_images MODIFY aspect_ratio TINYINT(1) NOT NULL DEFAULT 1;
+
+    -- add COLUMNs shipping methods and sendings methods
+    ALTER TABLE business ADD shipping_methods VARCHAR(255) NOT NULL AFTER description;
+    ALTER TABLE business ADD payment_methods VARCHAR(255) NOT NULL AFTER shipping_methods;
 
 
 
