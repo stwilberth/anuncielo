@@ -266,6 +266,44 @@ use apren173_anuncielo;
 
 
 
+-- crear tabla ads
+
+    CREATE TABLE ads (
+        id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        description VARCHAR(255),
+        price DECIMAL(10,2) NOT NULL,
+        currency VARCHAR(3) NOT NULL,
+        url VARCHAR(255) NOT NULL,
+        category_id BIGINT(20) unsigned NOT NULL,
+        user_id BIGINT(20) unsigned NOT NULL,
+        store_id BIGINT(20) unsigned NOT NULL,
+        business_id BIGINT(20) unsigned NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );
+
+    -- crear tabla store_images con par unico de store_id y url
+    CREATE TABLE ads_images (
+        id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        ads_id BIGINT(20) unsigned NOT NULL,
+        url VARCHAR(255) NOT NULL,
+        type int(1) NOT NULL DEFAULT 0,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (ads_id) REFERENCES ads(id)
+    );
+
+    -- combinacion url y ads_id unica
+    ALTER TABLE ads_images ADD UNIQUE KEY unique_ads_image_url (ads_id, url);
+
+    -- add column aspect_ratio tynint NULL
+    ALTER TABLE ads_images ADD aspect_ratio TINYINT(1) NOT NULL after type;
+
+    -- the column aspect_ratio cant be cero
+    ALTER TABLE business_images MODIFY aspect_ratio TINYINT(1) NOT NULL DEFAULT 1;
+
 
 
 
