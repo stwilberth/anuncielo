@@ -13,7 +13,7 @@ state([
     'url' => '',
     'phone' => '',
     'whatsapp' => '',
-    'country' => '',
+    'country' => 'Costa Rica',
     'address' => '',
     'physical' => '',
     'email' => '',
@@ -32,22 +32,6 @@ mount(function () {
         return redirect()->route('dashboard.stores.index');
     }
 });
-
-$clearForm = function () {
-    $this->name = '';
-    $this->description = '';
-    $this->payment_methods = '';
-    $this->shipping_methods = '';
-    $this->url = '';
-    $this->phone = '';
-    $this->whatsapp = '';
-    $this->country = '';
-    $this->address = '';
-    $this->physical = '';
-    $this->email = '';
-    $this->facebook_url = '';
-    $this->instagram_url = '';
-};
 
 $validateForm = function () {
     $this->validate([
@@ -85,7 +69,7 @@ $create = function () {
         $store->url = $this->url;
         $store->phone = $this->phone;
         $store->whatsapp = $this->whatsapp;
-        $store->country = $this->country;
+        $store->country = 'Costa Rica';
         $store->address = $this->address;
         $store->physical = $this->physical;
         $store->email = $this->email;
@@ -93,8 +77,6 @@ $create = function () {
         $store->instagram_url = $this->instagram_url;
         $store->user_id = Auth::id();
         $store->save();
-
-    $this->clearForm();
 
     //redirect to new store
     return redirect()->route('stores.index')->with('message', 'Store created successfully.');
@@ -219,21 +201,21 @@ $checkUrl = function () {
                             <!-- Campo Teléfono -->
                             <div class="mb-4">
                                 <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono:</label>
-                                <input wire:model="phone" type="text" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" placeholder="Teléfono">
+                                <input wire:model="phone" type="number" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" placeholder="Teléfono">
                                 @error('phone') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
 
                             <!-- Campo WhatsApp -->
                             <div class="mb-4">
                                 <label for="whatsapp" class="block text-gray-700 text-sm font-bold mb-2">WhatsApp:</label>
-                                <input wire:model="whatsapp" type="text" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="whatsapp" placeholder="WhatsApp">
+                                <input wire:model="whatsapp" type="number" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="whatsapp" placeholder="WhatsApp">
                                 @error('whatsapp') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
 
                             <!-- Campo País -->
                             <div class="mb-4">
                                 <label for="country" class="block text-gray-700 text-sm font-bold mb-2">País:</label>
-                                <input wire:model="country" type="text" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="country" placeholder="País">
+                                <input wire:model="country" type="text" class="shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="country" placeholder="País" disabled>
                                 @error('country') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
 
