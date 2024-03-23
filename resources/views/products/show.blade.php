@@ -4,6 +4,27 @@
     <x-slot name="meta_tags_layout">
         <meta name="description" content="{{ $product->description }}">
         <title>{{ $product->name }} | {{ $store->name }} | Anúncielo.com</title>
+
+        <meta property='article:published_time' content='{{$product->created_at}}' />
+        <meta property='article:section' content='event' />
+        <meta property="og:description" content="{{$product->description}}" />
+        <meta property="og:title" content="{{$product->name}}" />
+        <meta property="og:url" content="{{url()->current()}}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:locale" content="es-cr" />
+        <meta property="og:locale:alternate" content="es-us" />
+        <meta property="og:site_name" content="Anúncielo.com" />
+        @if ($product->images && $product->images->count() > 0)
+        <meta property="og:image" content="{{ asset('storage/stores/' . $product->store->url . '/products/' . $product->images->first()->url) }}" />
+        {{-- <meta property="og:image:secure_url" content="https://variedadescr.com/storage/productos/{{$product->imagenes->first()->ruta}}" /> --}}
+        @endif
+        <meta property="og:image:size" content="300" />
+
+        {{-- <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="{{$product->nombre}}" />
+        <meta name="twitter:site" content="@BrnBhaskar" /> --}}
+
+
     </x-slot>
 
     <x-slot name="header">
@@ -60,6 +81,10 @@
 
                         <a href="https://wa.me/+506{{ $product->store->whatsapp }}?text={{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }} Me interesa este articulo." class="mx-4 px-4 py-2 text-white font-semibold bg-green-500 dark:bg-green-700 rounded">
                             Pedir
+                        </a>
+
+                        <a href="whatsapp://send?text={{url()->current()}}" target="_blank" class="mx-4 px-4 py-2 text-white font-semibold bg-green-500 dark:bg-green-700 rounded">
+                            Compartir
                         </a>
 
                         @if($store->userIsOwner())
