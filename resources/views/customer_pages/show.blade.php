@@ -32,7 +32,7 @@
                             </div>
                             <div class="text-gray-500 dark:text-gray-400 flex justify-center">
                                 {{-- add images link --}}
-                                <a href="{{ route('dashboard.stores.addImageCover', $store->url) }}" class="text-blue-600 hover:text-blue-700">Agregar Imagen de Portada</a>
+                                <a href="{{ route('stores.addImageCover', $store->url) }}" class="text-blue-600 hover:text-blue-700">Agregar Imagen de Portada</a>
                             </div>
                         </div>
                     @endif
@@ -100,11 +100,7 @@
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
-                                    <span class="leading-tight">WhatsApp:
-                                        <a href="https://wa.me/+506{{ $store->whatsapp }}?text=Buenas!" class="text-green-500">
-                                            {{ $store->whatsapp }}
-                                        </a>
-                                    </span>
+                                    <span class="leading-tight">WhatsApp: {{ $store->whatsapp }}</span>
                                 </li>
                                 <li class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -112,14 +108,12 @@
                                     </svg>
                                     <span class="leading-tight">Email: {{ $store->email }}</span>
                                 </li>
-                                @if($store->facebook_url)
                                 <li class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
-                                        <span class="leading-tight">Facebook: {{ $store->facebook_url }}</span>
+                                    <span class="leading-tight">Facebook: {{ $store->facebook_url }}</span>
                                 </li>
-                                @endif
                             </ul>
                         </div>
                         <div class="hidden p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800" id="envio" role="tabpanel" aria-labelledby="envio-tab">
@@ -140,12 +134,12 @@
                             <p class="mb-3 text-gray-500 dark:text-gray-400">
                                 {{-- create product link --}}
 
-                                @if($store->products->count() == 100)
-                                    <span class="text-red-500">No puedes crear más productos, has llegado al límite de 100 productos.</span>
+                                @if($store->products->count() >= 9)
+                                    <span class="text-red-500">No puedes crear más productos, has llegado al límite de 15 productos.</span>
                                     <br>
                                     <span class="text-green-500">Para crear más productos debes actualizar tu plan.</span>
                                 @else
-                                    <a href="{{ route('dashboard.products.create', $store->url) }}" class="text-blue-600 hover:text-blue-700">
+                                    <a href="{{ route('stores.products.create', $store->url) }}" class="text-blue-600 hover:text-blue-700">
                                         Crear Producto
                                     </a>
                                 @endif
@@ -153,7 +147,7 @@
                             </p>
                             <p class="mb-3 text-gray-500 dark:text-gray-400">
                                 {{-- add images link --}}
-                                <a href="{{ route('dashboard.stores.addImageCover', $store->url) }}" class="text-blue-600 hover:text-blue-700">
+                                <a href="{{ route('stores.addImageCover', $store->url) }}" class="text-blue-600 hover:text-blue-700">
                                 @if($store->images->count() > 0)
                                     Actualizar Imagen de Portada
                                 @else
@@ -163,7 +157,7 @@
                             </p>
 
                             {{-- edit store --}}
-                            <a href="{{ route('dashboard.stores.edit', $store->url) }}" class="text-blue-600 hover:text-blue-700">
+                            <a href="{{ route('stores.edit', $store->url) }}" class="text-blue-600 hover:text-blue-700">
                                 Editar Tienda
                             </a>
                         </div>
@@ -174,14 +168,7 @@
                 <div class="mt-6">
                     <h2 class="mb-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white text-center">Productos</h2>
                     <div class="mt-6">
-                        <div class="grid md:grid-cols-4 grid-cols-3 gap-4">
-                            @if($store->user_id == 1)
-                                @if($vproducts->count() > 0)
-                                    @foreach ($vproducts as $vproduct)
-                                        <x-vproduct :product="$vproduct" :store="$store" />
-                                    @endforeach
-                                @endif
-                            @endif
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             @foreach ($store->products as $product)
                                 <x-product :product="$product" />
                             @endforeach

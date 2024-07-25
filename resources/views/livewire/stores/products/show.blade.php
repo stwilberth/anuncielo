@@ -1,6 +1,32 @@
+<?php
+
+use function Livewire\Volt\{layout, state, mount};
+use Illuminate\Support\Facades\DB;
+use App\Models\Store;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Validation\Rule;
+use Illuminate\Database\Query\Builder;
 
 
-<x-app-layout>
+state([
+    'store',
+    'product',
+]);
+
+layout('layouts.app');
+
+mount(function ($store_url, $product_url) {
+
+    $this->store = Store::where('url', $store_url)->firstOrFail();
+    $this->product = $this->store->products()->where('url', $product_url)->firstOrFail();
+
+});
+
+?>
+
+<div>
     <x-slot name="meta_tags_layout">
         <meta name="description" content="{{ $product->description }}">
         <title>{{ $product->name }} | {{ $store->name }} | Anúncielo.com</title>
@@ -55,67 +81,31 @@
                                         <img src="{{ asset('storage/stores/' . $product->store->url . '/products/' . $product->images->first()->url) }}" alt="{{ $product->name }}" class="w-full rounded-lg">
                                     </div>
                                 @else
-                                    <div class="flex justify-center items-center h-full bg-gray-100 shadow-md rounded-lg">
-                                        <p class="text-xl font-semibold text-gray-900 dark:text-white">Producto sin foto</p>
-                                    </div>
+                                    <img class="p-8 rounded-t-lg" src="/producto_sin_imagen.png" alt="product image" />
                                 @endif
                             @endif
                         </div>
-                        <div class="w-full md:w-1/2 px-4 pb-4">
+                        <div class="w-full md:w-1/2 px-4 pb-4 mt-3">
                             <p class="mb-4 text-gray-700 dark:text-gray-400 overflow-hidden whitespace-normal">{{ $product->description }}</p>
                             <p class="mb-4 text-gray-700 dark:text-gray-400">Precio: ₡{{ number_format($product->price, 0, '', '') }}</p>
                             <p class="mb-4 text-gray-700 dark:text-gray-400">Existencias: {{ $product->stock }}</p>
                             <p class="mb-4 text-gray-700 dark:text-gray-400">Categoría: {{ $product->categories->name }}</p>
-                            {{-- <p class="mb-4 text-gray-700 dark:text-gray-400">Status: {{ $product->status }}</p> --}}
+                            {{-- <p class="mb-4 text-gray-700 dark:text-gray-400">Status: {{ $product->status }}</p>
                             <p class="text-gray-700 dark:text-gray-400">Fecha Publicación: {{ $product->created_at }}</p>
-                            <p class="mb-4 text-gray-700 dark:text-gray-400">Fecha Actualización: {{ $product->updated_at }}</p>
+                            <p class="mb-4 text-gray-700 dark:text-gray-400">Fecha Actualización: {{ $product->updated_at }}</p> --}}
                         </div>
                     </div>
-                    <div class="w-full m-4">
-
-                        {{-- back --}}
-                        {{-- <a href="{{ route('products.index') }}" class="px-4 py-2 text-white font-semibold bg-gray-900 dark:bg-gray-700 rounded">Back</a> --}}
-                        <a href="{{ route('stores.show', $store->url) }}" class="mx-4 px-4 py-2 text-white font-semibold bg-blue-500 dark:bg-blue-700 rounded">
-                            Ver Tienda
-                        </a>
-
-                        <a href="https://wa.me/+506{{ $product->store->whatsapp }}?text={{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }} Me interesa este articulo." class="mx-4 px-4 py-2 text-white font-semibold bg-green-500 dark:bg-green-700 rounded">
-                            Pedir
-                        </a>
-
-                        <a href="whatsapp://send?text={{url()->current()}}" target="_blank" class="mx-4 px-4 py-2 text-white font-semibold bg-green-500 dark:bg-green-700 rounded">
-                            Compartir
-                        </a>
-
-                        @if($store->userIsOwner())
-                            {{-- edit --}}
-                            <a href="{{ route('dashboard.products.edit', ['store_url' => $store->url, 'product_url' => $product->url]) }}" class="mx-4 px-4 py-2 text-white font-semibold bg-blue-500 dark:bg-blue-700 rounded">
-                                Editar Producto
-                            </a>
-
-                            {{-- edit image --}}
-                            <a href="{{ route('addImage', ['store_url' => $store->url, 'product_url' => $product->url]) }}" class="mx-4 px-4 py-2 text-white font-semibold bg-blue-500 dark:bg-blue-700 rounded">Agregar Imagen</a>
-
-                            {{-- delete --}}
-                            <button
-                                data-modal-target="delete_product_modal"
-                                data-modal-toggle="delete_product_modal"
-                                class="px-4 py-2 text-white font-semibold bg-red-500 dark:bg-red-700 rounded">Eliminar</button>
-                            <x-modal-warning modal-id="delete_product_modal" modal-title="¿Realmente desea eliminar este producto?">
-                                <form action="{{ route('dashboard.products.delete', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="px-4 py-2 text-white font-semibold bg-red-500 dark:bg-red-700 rounded">Sí, Eliminar</button>
-                                </form>
-                            </x-modal-warning>
-                        @endif
+                    <div class="w-full">
+                        <x-products-buttons :store="$store" :product="$product" />
+                        <x-products-buttons-md :store="$store" :product="$product" />
                     </div>
+
+                    <x-products-buttons-edit :store="$store" :product="$product" />
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-</x-app-layout>
-
-
+</div>

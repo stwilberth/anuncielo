@@ -29,7 +29,7 @@ mount(function () {
     if (Store::where('user_id', Auth::id())->exists()) {
         session()->flash('message-type', 'error');
         session()->flash('message', 'No puedes crear Más de una tienda.');
-        return redirect()->route('dashboard.stores.index');
+        return redirect()->route('stores.index');
     }
 });
 

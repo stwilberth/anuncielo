@@ -48,65 +48,53 @@ class ImageCtrl extends Controller
             return redirect()->back()->with('error', 'Error al guardar la imagen: El producto ya tiene 5 imágenes.');
         }
         // Validar la solicitud con condición
-        $request->validate([
-            'img' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'name' => 'required|string|max:255',
-            'medidas_crop' => 'required|string|max:255',
-            'aspect_ratio' => 'required_if:imageCount,0|numeric',
-        ]);
+        $request->validate(
+            [
+            'img2' => 'required|image|mimes:jpeg,png,jpg,webp|max:8192',
+            'input_rotation' => 'numeric|min:-180|max:270',
+            // 'aspect_ratio' => 'required_if:imageCount,0|numeric',
+            ],
+            [
+            'img2.max' => 'La imagen no puede ser mayor de 8 MB.',
+            'img2.required' => 'La imagen es requerida.',
+            'img2.image' => 'El archivo debe ser una imagen.',
+            'img2.mimes' => 'El archivo debe ser una imagen en formato jpeg, png, jpg o webp.',
+            'medidas_crop.required' => 'Las medidas de recorte son requeridas.',
+            'medidas_crop.max' => 'Las medidas de recorte no pueden ser mayores de 255 caracteres.',
+            'input_rotation.max' => 'El ángulo de rotación no puede ser mayor de 270 grados.',
+            'input_rotation.min' => 'El ángulo de rotación no puede ser menor de -180 grados.',
+            'input_rotation.numeric' => 'El ángulo de rotación debe ser un número.',
+            ]
+        );
 
 
-
-        if ($request->hasFile('img')) {
+        if ($request->hasFile('img2')) {
             try {
-                $crop = json_decode($request->medidas_crop);
-                $img = $request->file('img');
-                $name = $request->name;
-
-                $w = (int)$crop->w;
-                $h = (int)$crop->h;
-                $x = (int)$crop->x;
-                $y = (int)$crop->y;
-
+                $img = $request->file('img2');
+                $name = $Product->name . ' - ' . $Product->images->count() + 1 ;
                 $unique_name = Str::uuid()->toString() . '_' . time() . '.' . $img->getClientOriginalExtension();
+                $img_crop = Image::make($img->getRealPath());
+                $img_thumb = Image::make($img->getRealPath());
 
-                if($imageCount > 0){
-                    $aspectRatio = (int)$Product->images->first()->aspect_ratio;
-                }else{
-                    $aspectRatio = (int)$request->aspect_ratio;
+                $measure_w = 960;
+                $measure_h = 720;
+                $measure_thumb_w = 240;
+                $measure_thumb_h = 180;
+
+
+                if($request->button_rotation){
+                    $img_crop->rotate($request->button_rotation);
                 }
 
-                if ($aspectRatio == 1) {
-                    //aspectRatio = 1;
-                    $measure_w = 960;
-                    $measure_h = 960;
-                    $measure_thumb_w = 240;
-                    $measure_thumb_h = 240;
-                } else if ($aspectRatio == 2) {
-                    //aspectRatio = 3 / 2;
-                    $measure_w = 960;
-                    $measure_h = 640;
-                    $measure_thumb_w = 240;
-                    $measure_thumb_h = 160;
-                } else if ($aspectRatio == 3) {
-                    //aspectRatio = 4 / 3;
-                    $measure_w = 960;
-                    $measure_h = 720;
-                    $measure_thumb_w = 240;
-                    $measure_thumb_h = 180;
-                } else if ($aspectRatio == 4) {
-                    //aspectRatio = 16 / 9;
-                    $measure_w = 960;
-                    $measure_h = 540;
-                    $measure_thumb_w = 240;
-                    $measure_thumb_h = 135;
-                } else {
-                    //error
-                    return redirect()->back()->with('error', 'Error al guardar la imagen: No se ha seleccionado una Medida válida.');
+                if($img_crop->width() > $measure_w){
+                    $img_crop->resize($measure_w, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $img_thumb->resize($measure_thumb_w, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
                 }
 
-                $img_crop = Image::make($img->getRealPath())->crop($w, $h, $x, $y)->resize($measure_w, $measure_h);
-                $img_thumb = Image::make($img->getRealPath())->crop($w, $h, $x, $y)->resize($measure_thumb_w, $measure_thumb_h);
 
                 $img_thumb_path = 'stores/'.$Product->store->url.'/products/thumb_'.$unique_name;
                 $img_crop_path = 'stores/'.$Product->store->url.'/products/'.$unique_name;
@@ -114,12 +102,11 @@ class ImageCtrl extends Controller
                 Storage::disk('public')->put($img_thumb_path, $img_thumb->encode());
                 Storage::disk('public')->put($img_crop_path, $img_crop->encode());
 
-                $Product->addImage($name, $unique_name, $aspectRatio);
+                $Product->addImage($name, $unique_name, 3);
 
                 return redirect()->back()->with('status', 'OK');
 
             } catch (\Throwable $th) {
-                dd($th->getMessage());
                 return redirect()->back()->with('error', 'Error al guardar la imagen: ' . $th->getMessage());
             }
         } else {

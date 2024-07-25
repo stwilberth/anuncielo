@@ -1,37 +1,36 @@
 <?php
 
 use function Livewire\Volt\{state};
-use App\Models\StoreImage;
-use App\Models\Store;
+use App\Models\ProductImage;
+use App\Models\Product;
 
 state([
-    'store_id',
+    'product_id',
     'images',
     'url_base',
 ]);
 
 
 $deleteImage = function($id) {
-    $image = StoreImage::findOrFail($id);
-    $store = Store::findOrFail($image->store_id);
-    if ($store->user_id != auth()->user()->id) {
-        abort(403);
+    $image = ProductImage::findOrFail($id);
+    $product = Product::findOrFail($image->product_id);
+    if ($product->store->user_id != auth()->user()->id) {
+        return redirect()->route('stores.index');
     }
 
     try {
-
         //eliminar imagen archivos
-        Storage::disk('public')->delete('stores/'.$store->url.'/images/'.$image->url);
-        Storage::disk('public')->delete('stores/'.$store->url.'/images/thumb_'.$image->url);
-        $image->delete();
+        Storage::disk('public')->delete('users/'.auth()->user()->id.'/ads/'.$image->url);
+        Storage::disk('public')->delete('users/'.auth()->user()->id.'/ads/thumb_'.$image->url);
 
+        $image->delete();
     } catch (\Throwable $th) {
         dd($th);
     }
 
     //$this->images = ProductImage::where('product_id', $product->id)->get();
     //refresh page
-    return redirect()->route('stores.addImageCover', $store->url);
+    return redirect()->route('addImage', ['store_url' => $product->store->url, 'product_url' => $product->url]);
 };
 
 ?>

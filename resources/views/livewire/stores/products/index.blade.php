@@ -1,6 +1,37 @@
+<?php
+
+use function Livewire\Volt\{layout, state, mount};
+use Illuminate\Support\Facades\DB;
+use App\Models\Store;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+use App\Models\Category;
+
+state([
+    'products' => [],
+    'title' => '',
+]);
+
+mount(function ($isOwner = false) {
+
+    if($isOwner){
+        $this->products = Product::where('user_id', auth()->user()->id)->get();
+        $this->title = 'Mis productos';
+    }else{
+        $this->products = Product::all();
+        $this->title = 'Todos los productos';
+    }
+
+});
 
 
-<x-app-layout>
+layout('layouts.app');
+
+?>
+
+
+
+<div>
     {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $store->name }}
@@ -32,4 +63,4 @@
     </div>
 </div>
 
-</x-app-layout>
+</div>

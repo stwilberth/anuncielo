@@ -23,7 +23,7 @@ new class extends Component
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" wire:navigate>
+                    <a href="{{ route('dashboard') }}" wire:navigate style="height: 100%">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -44,9 +44,9 @@ new class extends Component
                         Tiendas
                     </x-nav-link>
                 </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" wire:navigate>
-                        Productos
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('ads.index')" :active="request()->routeIs('ads.index')" wire:navigate>
+                        Anuncios
                     </x-nav-link>
                 </div>
             </div>
