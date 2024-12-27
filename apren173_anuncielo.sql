@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-10-2024 a las 22:38:06
+-- Tiempo de generación: 25-12-2024 a las 00:25:46
 -- Versión del servidor: 5.7.23-23
--- Versión de PHP: 8.1.29
+-- Versión de PHP: 8.1.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -357,7 +357,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Wilberth', 'stwilberth@gmail.com', NULL, '$2y$12$sdCFM.g9gj.g6Dq6v2.UYOr72n4ZdgA.6W/LPgrzh.jzEX0/1NX.O', NULL, '2024-01-05 02:10:19', '2024-01-05 02:10:19'),
+(1, 'Wilberth', 'stwilberth@gmail.com', NULL, '$2y$12$sdCFM.g9gj.g6Dq6v2.UYOr72n4ZdgA.6W/LPgrzh.jzEX0/1NX.O', '56so7Yk3BHCheDQhsUyG8RPW4OOkrZo3XxW7JTSG3Cx4ffTBuT18q8NQDH7o', '2024-01-05 02:10:19', '2024-01-05 02:10:19'),
 (2, 'Greivin Vega', 'rastavega10@gmail.com', NULL, '$2y$12$qIPHljJu3PBiccSophWKCuA/4Ur2QGrRJ6NYGquXUpMAhlxwKZPMK', NULL, '2024-01-01 22:54:15', '2024-01-01 22:54:15'),
 (4, 'Tienda Jala', 'consultas@tiendajala.com', NULL, '$2y$12$ZdlsPOMnYOCGvj1UNF1dR.9jmudLb2x5Y94leUrn.yklDNvwBNJH2', 'gKP2is440glz1mlNJKiWXsMBk3gEUU5GtIerhobRI69MhyJPif6jiN1lug6v', '2024-01-22 01:02:55', '2024-01-22 01:02:55'),
 (5, 'Guissell Montes', 'montesguissell2@gmail.com', NULL, '$2y$12$uaCNwk3T/hYlo0nvv13oVe0qDOKMwmPdTeFZ9sqWEHKqN4hJ4CTMG', 'eJtNb39tDb1rOowpRH5atImTh4b3SsXoEfOoFWVnfhN6drNUVq6FQy8wFjgi', '2024-02-22 05:44:33', '2024-02-22 05:44:33'),
@@ -369,7 +369,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (11, 'Beberlyn Morales', 'comprasmmaequipamientos@gmail.com', NULL, '$2y$12$xi8.dTJY.etxAYzIE1f94.PcrMeSGk6hzQTwFIGRN/BJ.aqCpbwSK', NULL, '2024-08-06 02:14:38', '2024-08-06 02:14:38'),
 (12, 'Test', 'test@test.com', NULL, '$2y$12$VYJ49x.T1He3VoRH12kQgurmB3S2dqc3zYXLLwiHZCVvulZavO/Qa', NULL, '2024-09-29 07:38:46', '2024-09-29 07:38:46'),
 (13, 'Jorge', 'skatelanks@gmail.com', NULL, '$2y$12$Yr0TV1hJcAjKNpC/e/fTxuES4AsfQw5Se5UBWQSvn9FQ4dZfvQ1jq', NULL, '2024-09-29 08:45:23', '2024-09-29 08:45:23'),
-(14, 'Andreina', 'haciendaverdetropical@gmail.com', NULL, '$2y$12$ixnNJDrthNoIfRTDko96T.Liyl1RUX.HlB/ivLjHbQmBHrh4E7eo6', NULL, '2024-09-29 09:37:43', '2024-09-29 09:37:43');
+(14, 'Andreina', 'haciendaverdetropical@gmail.com', NULL, '$2y$12$ixnNJDrthNoIfRTDko96T.Liyl1RUX.HlB/ivLjHbQmBHrh4E7eo6', NULL, '2024-09-29 09:37:43', '2024-09-29 09:37:43'),
+(15, 'Alvaro Alvarado', 'ajalvarados0474@gmail.com', NULL, '$2y$12$rX8JTPuZzDPtPxeg7DBV8eb/CG/BYK301Jo/24/KixAhBRL3fAPly', NULL, '2024-10-16 23:02:53', '2024-10-16 23:02:53'),
+(16, 'María José Nora Rodriguez', 'zimrijahdai77@gmail.com', NULL, '$2y$12$vLp6B0geMPhu5nMlr2i.LuhYyi8z0K3RjIEIBih.90YgKidAP5k.q', NULL, '2024-12-23 04:20:23', '2024-12-23 04:20:23');
 
 --
 -- Índices para tablas volcadas
@@ -519,13 +521,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -549,7 +551,7 @@ ALTER TABLE `store_images`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
