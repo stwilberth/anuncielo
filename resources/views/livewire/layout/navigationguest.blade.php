@@ -14,7 +14,7 @@ new class extends Component
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-amethyst-500 border-b border-amethyst-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -29,22 +29,24 @@ new class extends Component
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" wire:navigate>
-                        Anúncielo.com
+                        Inicio
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        Administrar
+                    <x-nav-link :href="route('pricing')" :active="request()->routeIs('pricing')" wire:navigate>
+                        Precios
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('stores.index')" :active="request()->routeIs('stores.index')" wire:navigate>
-                        Tiendas
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')" wire:navigate>
+                        Acerca de
                     </x-nav-link>
                 </div>
+
+                {{-- ver ejemplo --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" wire:navigate>
-                        Productos
+                    <x-nav-link :href="route('stores.show', 'wilberth')" :active="request()->routeIs('stores.show', 'wilberth')" wire:navigate>
+                        Ver ejemplo
                     </x-nav-link>
                 </div>
             </div>

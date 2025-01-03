@@ -46,6 +46,8 @@
                 {{ $slot }}
             </main>
 
+            <x-footer-footer />
+
             <div class="max-w-md mx-auto">
                 <div id="alert-4" class="flex items-center p-4 mb-4 text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
                 <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

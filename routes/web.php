@@ -34,10 +34,6 @@ Route::get('stores/{store_url}/products/{product_url}', [ProductCtrl::class, 'sh
 Route::get('products', [ProductCtrl::class, 'index'])->name('products.index');
 
 
-Route::view('/', 'welcome')->name('welcome');
-
-Route::view('profile', 'profile')->middleware(['auth'])->name('profile');
-
 //edicion de imagenes de productos
 Route::get('stores/{store_url}/products/{product_url}/add-image', [ImageCtrl::class, 'add'])->name('addImage')->middleware(['auth']);
 Route::post('stores/{store_url}/products/{product_url}/save-image', [ImageCtrl::class, 'save'])->name('saveImage')->middleware(['auth']);
@@ -48,5 +44,12 @@ Route::post('stores/{store_url}/products/{product_url}/save-image', [ImageCtrl::
 Route::get('stores/{store_url}/add-image', [ImageCtrl::class, 'addImageCover'])->name('dashboard.stores.addImageCover')->middleware(['auth']);
 Route::post('stores/{store_url}/save-image', [ImageCtrl::class, 'saveImageCover'])->name('dashboard.stores.saveImageCover')->middleware(['auth']);
 
-Route::view('dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
+//pages
+Route::view('/', 'pages.welcome')->name('welcome');
+Route::view('dashboard', 'pages.dashboard')->middleware(['auth', 'verified'])->name('dashboard');
+Route::view('pricing', 'pages.pricing')->name('pricing');
+Route::view('about', 'pages.about')->name('about');
+Route::view('profile', 'pages.profile')->middleware(['auth'])->name('profile');
+
 require __DIR__.'/auth.php';
+

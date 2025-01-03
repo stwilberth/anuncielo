@@ -18,6 +18,21 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                amethyst: {
+                    50: '#f9f6fe',
+                    100: '#f2ebfc',
+                    200: '#e7dafa',
+                    300: '#d4bdf5',
+                    400: '#ba92ee',
+                    500: '#975be1',
+                    600: '#8949d4',
+                    700: '#7537b9',
+                    800: '#623198',
+                    900: '#51297a',
+                    950: '#351259',
+                },
+            },
         },
     },
 
