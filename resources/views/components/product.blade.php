@@ -1,4 +1,4 @@
-<div class="group w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 mb-6">
+<div class="group w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800 dark:border-gray-700">
     <a href="{{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}" class="block overflow-hidden">
         @if ($product->images->count() > 0)
             <img class="rounded-t-lg w-full h-48 sm:h-56 md:h-64 object-contain transform group-hover:scale-105 transition-transform duration-300" src="{{ asset('storage/stores/' . $product->store->url . '/products').'/'.$product->images->first()->url }}" alt="{{ $product->name }}" />
