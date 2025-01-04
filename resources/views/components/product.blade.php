@@ -1,41 +1,17 @@
-
-
-<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="{{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}">
+<div class="group w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 mb-6">
+    <a href="{{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}" class="block overflow-hidden">
         @if ($product->images->count() > 0)
-            <img class="p-8 rounded-t-lg" src="{{ asset('storage/stores/' . $product->store->url . '/products').'/'.$product->images->first()->url }}" alt="product image" />
+            <img class="rounded-t-lg w-full h-48 sm:h-56 md:h-64 object-contain transform group-hover:scale-105 transition-transform duration-300" src="{{ asset('storage/stores/' . $product->store->url . '/products').'/'.$product->images->first()->url }}" alt="{{ $product->name }}" />
         @else
-            {{-- <img class="p-8 rounded-t-lg" src="{{ asset('img/no-image.png') }}" alt="product image" /> --}}
-            <img class="p-8 rounded-t-lg" src="/apple-watch.png" alt="product image" />
+            <img class="rounded-t-lg w-full h-48 sm:h-56 md:h-64 object-contain transform group-hover:scale-105 transition-transform duration-300" src="/apple-watch.png" alt="{{ $product->name }}" />
         @endif
     </a>
     <div class="px-5 pb-5">
-        <a href="{{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ $product->name }}</h5>
+        <a href="{{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}" class="block mb-4">
+            <h5 class="text-base sm:text-lg md:text-xl font-semibold tracking-tight text-gray-900 line-clamp-2 hover:text-blue-600 transition-colors duration-200 dark:text-white dark:hover:text-blue-400">{{ $product->name }}</h5>
         </a>
-        {{-- <div class="flex items-center mt-2.5 mb-5">
-            <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-            </div>
-            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
-        </div> --}}
-        <div class="flex items-center justify-between mt-5">
-            <span class="text-xl font-bold text-gray-900 dark:text-white">₡{{ $product->price }}</span>
-            <a href="{{ route('products.show', ['store_url' => $product->store->url, 'product_url' => $product->url]) }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ver</a>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <span class="text-xl sm:text-2xl font-bold text-amethyst-500 dark:text-white">₡{{ number_format($product->price, 0, ',', '.') }}</span>
         </div>
     </div>
 </div>
