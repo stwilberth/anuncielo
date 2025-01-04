@@ -1,5 +1,5 @@
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
+    <a href="{{ route('stores.show', $store->url) }}">
         @if($store->images->count() > 0)
             <img class="object-cover w-full h-48 rounded-t-lg" src="{{ asset('storage/stores/' . $store->url . '/images') }}/thumb_{{ $store->images->first()->url }}" alt="{{ $store->name }}">
         @else

@@ -8,8 +8,8 @@
         @isset($meta_tags_layout)
             {{ $meta_tags_layout }}
         @else
-            <meta name="description" content="Anúncielo.com es un sitio web de anuncios clasificados en el que puedes publicar anuncios gratis y sin comisión.">
-            <title>Anúncielo.com</title>
+            <meta name="description" content="Crea tu tienda virtual gratis en minutos y vende sin comisiones. Gestiona tus ventas con total libertad, elige tus métodos de pago y conecta directamente con tus clientes.">
+            <title>Crea tu tienda virtual gratis en minutos | Anúncielo.com</title>
         @endisset
 
         <!-- Fonts -->
