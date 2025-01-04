@@ -3,6 +3,9 @@
 <x-app-layout>
     <x-slot name="meta_tags_layout">
         <meta name="description" content="{{ $store->description }}">
+        <meta property="og:title" content="{{ $store->name }} | Anúncielo.com">
+        <meta property="og:description" content="{{ $store->description }}">
+        <meta property="og:image" content="{{ asset('storage/stores/' . $store->url . '/images') }}/thumb_{{ $store->images->first()->url }}">
         <title>{{ $store->name }} | Anúncielo.com</title>
     </x-slot>
     {{-- <x-slot name="header">

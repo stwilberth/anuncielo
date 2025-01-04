@@ -8,6 +8,12 @@
         @isset($meta_tags_layout)
             {{ $meta_tags_layout }}
         @else
+            <link rel="canonical" href="{{ request()->url() }}">
+            <meta property="og:url" content="{{ request()->url() }}">
+            <meta property="og:type" content="website">
+            <meta property="og:title" content="Crea tu tienda virtual gratis en minutos | Anúncielo.com">
+            <meta property="og:description" content="Crea tu tienda virtual gratis en minutos y vende sin comisiones. Gestiona tus ventas con total libertad, elige tus métodos de pago y conecta directamente con tus clientes.">
+            <meta property="og:image" content="{{ asset('images/logo.png') }}">
             <meta name="description" content="Crea tu tienda virtual gratis en minutos y vende sin comisiones. Gestiona tus ventas con total libertad, elige tus métodos de pago y conecta directamente con tus clientes.">
             <title>Crea tu tienda virtual gratis en minutos | Anúncielo.com</title>
         @endisset

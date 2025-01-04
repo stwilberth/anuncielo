@@ -2,6 +2,9 @@
 
     <x-slot name="meta_tags_layout">
         <meta name="description" content="Todas las tiendas en Anúncielo.com">
+        <meta property="og:title" content="Tiendas | Anúncielo.com">
+        <meta property="og:description" content="Todas las tiendas en Anúncielo.com">
+        <meta property="og:image" content="{{ asset('images/logo.png') }}">
         <title>Tiendas | Anúncielo.com</title>
     </x-slot>
 
