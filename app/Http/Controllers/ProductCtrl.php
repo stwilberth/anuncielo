@@ -15,7 +15,7 @@ class ProductCtrl extends Controller
     public function index()
     {
         //get all products from all stores with pagination
-        $products = Product::paginate(25);
+        $products = Product::where('published', 1)->get();
         $title = 'Productos de todas las tiendas';
         return view('products.index', compact('products', 'title'));
     }

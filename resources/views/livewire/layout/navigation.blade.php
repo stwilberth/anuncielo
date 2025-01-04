@@ -49,6 +49,13 @@ new class extends Component {
                         Productos
                     </x-nav-link>
                 </div>
+                @auth
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                            Dashboard
+                        </x-nav-link>
+                    </div>
+                @endauth
             </div>
 
             <!-- Right Side Navigation -->
@@ -76,13 +83,21 @@ new class extends Component {
 
                             <x-slot name="content">
                                 <x-dropdown-link :href="route('profile')" wire:navigate>
-                                    {{ __('Profile') }}
+                                    {{ __('Mi Perfil') }}
+                                </x-dropdown-link>
+
+                                <x-dropdown-link :href="route('dashboard')" wire:navigate>
+                                    {{ __('Dashboard') }}
+                                </x-dropdown-link>
+
+                                <x-dropdown-link :href="route('dashboard.stores.index')" wire:navigate>
+                                    {{ __('Mis Tiendas') }}
                                 </x-dropdown-link>
 
                                 <!-- Authentication -->
                                 <button wire:click="logout" class="w-full text-start">
                                     <x-dropdown-link>
-                                        {{ __('Log Out') }}
+                                        {{ __('Cerrar Sesión') }}
                                     </x-dropdown-link>
                                 </button>
                             </x-slot>
