@@ -1,4 +1,3 @@
-
 use anuncielo;
 use apren173_anuncielo;
 
@@ -265,6 +264,108 @@ use apren173_anuncielo;
     -- the column aspect_ratio cant be cero
     ALTER TABLE ad_images MODIFY aspect_ratio TINYINT(1) NOT NULL DEFAULT 1;
 
-    
+-- crear tabla countries
+    CREATE TABLE countries (
+        id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        iso_code CHAR(2) NOT NULL,
+        currency_code CHAR(3) NOT NULL,
+        currency_symbol VARCHAR(5) NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        UNIQUE KEY unique_iso_code (iso_code)
+    );
+
+    INSERT INTO countries (name, iso_code, currency_code, currency_symbol) VALUES
+        ('Argentina', 'AR', 'ARS', '$'),
+        ('Bolivia', 'BO', 'BOB', 'Bs.'),
+        ('Chile', 'CL', 'CLP', '$'),
+        ('Colombia', 'CO', 'COP', '$'),
+        ('Costa Rica', 'CR', 'CRC', '₡'),
+        ('Cuba', 'CU', 'CUP', '₱'),
+        ('Ecuador', 'EC', 'USD', '$'),
+        ('El Salvador', 'SV', 'USD', '$'),
+        ('Guatemala', 'GT', 'GTQ', 'Q'),
+        ('Honduras', 'HN', 'HNL', 'L'),
+        ('México', 'MX', 'MXN', '$'),
+        ('Nicaragua', 'NI', 'NIO', 'C$'),
+        ('Panamá', 'PA', 'PAB', 'B/.'),
+        ('Paraguay', 'PY', 'PYG', '₲'),
+        ('Perú', 'PE', 'PEN', 'S/'),
+        ('República Dominicana', 'DO', 'DOP', 'RD$'),
+        ('Uruguay', 'UY', 'UYU', '$'),
+        ('Venezuela', 'VE', 'VES', 'Bs.');
+
+        -- delete column currency_code from countries
+        ALTER TABLE countries DROP COLUMN currency_code;
+        -- delete column currency_symbol from countries
+        ALTER TABLE countries DROP COLUMN currency_symbol;
+
+     
+    -- create table currencies
+    CREATE TABLE currencies (
+        id BIGINT(20) unsigned AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        code CHAR(3) NOT NULL,
+        symbol VARCHAR(5) NOT NULL,
+        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );
+
+    -- insert currencies
+    INSERT INTO currencies (name, code, symbol) VALUES
+        ('Costa Rica', 'CRC', '₡'),
+        ('Panamá', 'PAB', 'B/.'),
+        ('Nicaragua', 'NIO', 'C$'),
+        ('Dólar estadounidense', 'USD', '$'),
+        ('Euro', 'EUR', '€'),
+        ('Peso mexicano', 'MXN', '$'),
+        ('Peso colombiano', 'COP', '$'),
+        ('Peso chileno', 'CLP', '$'),
+        ('Sol peruano', 'PEN', 'S/'),
+        ('Peso argentino', 'ARS', '$'),
+        ('Real brasileño', 'BRL', 'R$'),
+        ('Boliviano', 'BOB', 'Bs.'),
+        ('Guaraní paraguayo', 'PYG', '₲'),
+        ('Peso uruguayo', 'UYU', '$'),
+        ('Bolívar venezolano', 'VES', 'Bs.');
+
+        -- add column country_id to the stores table
+        ALTER TABLE stores ADD country_id BIGINT(20) unsigned NOT NULL after user_id;
+
+        -- add country_id value 5 to all stores
+        UPDATE stores SET country_id = 5;
+
+        -- delete column country
+        ALTER TABLE stores DROP COLUMN country;
+
+        -- add foreign key to the stores table
+        ALTER TABLE stores ADD FOREIGN KEY (country_id) REFERENCES countries(id);
+
+        -- add column currency_id to the stores table
+        ALTER TABLE stores ADD currency_id BIGINT(20) unsigned NOT NULL after country_id;
+
+        -- add currency_id value 1 to all stores
+        UPDATE stores SET currency_id = 1;
+
+        -- add foreign key to the stores table
+        ALTER TABLE stores ADD FOREIGN KEY (currency_id) REFERENCES currencies(id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

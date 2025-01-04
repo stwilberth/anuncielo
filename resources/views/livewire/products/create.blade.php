@@ -13,12 +13,10 @@ use Illuminate\Database\Query\Builder;
 state([
     'name' => '',
     'description' => '',
-    'url' => '',
     'stock' => 0,
     'category_id' => '',
     'published' => true,
     'price' => 0,
-    'url_valid' => false,
     'store' => null,
     'categories' => Category::all()->sortBy('name'),
     'products' => null,
@@ -33,7 +31,7 @@ mount(function ($store_url) {
     $this->store = $store;
     $this->products = $store->products;
     //no permitir mas de 10 productos
-    if($this->products->count() >= 9){
+    if($this->products->count() >= 25){
         return redirect()->route('stores.show', $this->store->url)->with('message', 'Ha alcanzado el limite máximo de productos creados');
     }
 });
@@ -43,13 +41,6 @@ mount(function ($store_url) {
 rules(fn () => [
     'name' => 'required|max:255',
     'description' => 'required|max:365',
-    'url' => [
-        'required',
-        'string',
-        'max:255',
-        'regex:/^[a-z0-9_-]+$/',
-        Rule::unique('products')->where(fn (Builder $query) => $query->where('url', $this->url)->where('store_id', $this->store->id))
-    ],
     'stock' => 'required|numeric|min:1',
     'category_id' => 'required|numeric|exists:categories,id',
     'published' => 'required|boolean',
@@ -60,7 +51,7 @@ rules(fn () => [
 $create = function () {
 
     //no permitir mas de 100 productos
-    if($this->products->count() == 100){
+    if($this->products->count() >= 25){
         return redirect()->route('stores.show', $this->store->url)->with('message', 'Ha alcanzado el limite máximo de productos creados');
     }
 
@@ -69,7 +60,7 @@ $create = function () {
         $Product = new Product();
         $Product->name = $this->name;
         $Product->description = $this->description;
-        $Product->url = $this->url;
+        $Product->url = uniqid() . '-' . Str::slug($this->name);
         $Product->stock = $this->stock;
         $Product->store_id = $this->store->id;
         $Product->category_id = $this->category_id;
@@ -83,29 +74,6 @@ $create = function () {
     //redirect to store/product/url
     return redirect()->route('products.show', [$this->store->url, $this->url])->with('message', 'Producto creado correctamente.');
 };
-
-$checkUrl = function () {
-    $this->url_valid = false;
-
-    $customMessages = [
-        'url.regex' => 'El campo URL solo puede contener letras minúsculas sin acentos, números, guiones bajos (_) y guiones (-).',
-        'url.unique' => 'La URL ya está en uso.',
-        'url.max' => 'La URL no puede tener más de 255 caracteres.',
-        'url.required' => 'La URL es obligatoria.',
-    ];
-
-    $this->validate([
-        'url' => [
-            'required',
-            'max:255',
-            'unique:stores',
-            'regex:/^[a-z0-9_-]+$/'
-        ],
-    ], $customMessages);
-
-    $this->url_valid = true;
-};
-
 
 ?>
 
@@ -121,40 +89,15 @@ $checkUrl = function () {
                 <div>
                     <form wire:submit.prevent="create" class="mx-auto">
 
-                        <div x-data="{
-                            name: '',
-                            url: '' ,
-                            updateUrl() {
-                                function removeAccents(text) {
-                                    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-                                }
-
-                                let nameWithoutAccents = removeAccents(this.name.toLowerCase());
-                                this.url = nameWithoutAccents.replace(/[^a-z0-9_-]/g, '-');
-                                $wire.url = this.url;
-                            }
-                        }">
+                        <div>
                             <div class="mb-4">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
                                 <input
                                     wire:model="name"
-                                    x-model="name"
-                                    @input="updateUrl()"
                                     type="text"
                                     id="name"
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 @error('name') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="url" class="block text-sm font-medium text-gray-700">URL</label>
-                                <input
-                                    wire:model="url"
-                                    x-model="url"
-                                    type="text"
-                                    id="url"
-                                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                @error('url') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
 
                         </div>

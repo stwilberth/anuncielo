@@ -145,9 +145,17 @@ new class extends Component {
             <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')" wire:navigate>
                 Acerca de
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('stores.show', 'wilberth')" :active="request()->routeIs('stores.show', 'wilberth')" wire:navigate>
-                Ver ejemplo
+            <x-responsive-nav-link :href="route('stores.index')" :active="request()->routeIs('stores.index')" wire:navigate>
+                Tiendas
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" wire:navigate>
+                Productos
+            </x-responsive-nav-link>
+            @auth
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                    Dashboard
+                </x-responsive-nav-link>
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->

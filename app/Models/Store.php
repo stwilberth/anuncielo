@@ -9,6 +9,23 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'payment_methods',
+        'shipping_methods',
+        'url',
+        'phone',
+        'whatsapp',
+        'country_id',
+        'currency_id',
+        'address',
+        'physical',
+        'email',
+        'facebook_url',
+        'instagram_url',
+    ];
+
     //products
     public function products()
     {
@@ -42,6 +59,16 @@ class Store extends Model
     public function userIsOwner()
     {
         return auth()->check() && (auth()->user()->id == $this->user_id);
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 
 }
