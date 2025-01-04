@@ -16,7 +16,6 @@
         <meta property="og:site_name" content="Anúncielo.com" />
         @if ($product->images && $product->images->count() > 0)
         <meta property="og:image" content="{{ asset('storage/stores/' . $product->store->url . '/products/' . $product->images->first()->url) }}" />
-        {{-- <meta property="og:image:secure_url" content="https://variedadescr.com/storage/productos/{{$product->imagenes->first()->ruta}}" /> --}}
         @endif
         <meta property="og:image:size" content="300" />
 

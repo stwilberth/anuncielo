@@ -62,7 +62,7 @@
                         <section class="mt-8 text-center">
                             <h2 class="text-2xl font-semibold mb-4 text-amethyst-800 dark:text-amethyst-200">¿Listo para Comenzar?</h2>
                             <p class="mb-6">Únete a la comunidad de vendedores exitosos en Anúncielo.com</p>
-                            <a href="{{ route('register') }}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-amethyst-500 hover:bg-amethyst-600 focus:ring-4 focus:ring-amethyst-300">
+                            <a href="{{ route('dashboard.stores.create') }}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-amethyst-500 hover:bg-amethyst-600 focus:ring-4 focus:ring-amethyst-300">
                                 Crear mi Tienda Ahora
                                 <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
