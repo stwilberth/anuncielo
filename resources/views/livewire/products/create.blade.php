@@ -72,7 +72,7 @@ $create = function () {
 
 
     //redirect to store/product/url
-    return redirect()->route('products.show', [$this->store->url, $this->url])->with('message', 'Producto creado correctamente.');
+    return redirect()->route('products.show', [$this->store->url, $Product->url])->with('message', 'Producto creado correctamente.');
 };
 
 ?>
