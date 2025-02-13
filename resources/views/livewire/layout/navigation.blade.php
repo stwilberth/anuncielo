@@ -49,6 +49,11 @@ new class extends Component {
                         Productos
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('restaurants.index')" :active="request()->routeIs('restaurants.index')" wire:navigate>
+                        Restaurantes
+                    </x-nav-link>
+                </div>
                 @auth
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
@@ -150,6 +155,9 @@ new class extends Component {
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" wire:navigate>
                 Productos
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('restaurants.index')" :active="request()->routeIs('restaurants.index')" wire:navigate>
+                Restaurantes
             </x-responsive-nav-link>
             @auth
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>

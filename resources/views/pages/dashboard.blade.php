@@ -1,10 +1,8 @@
 <x-app-layout>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-
-                <div class="grid lg:grid-cols-2 gap-6 sm:grid-cols-1">
+                <div class="grid lg:grid-cols-3 gap-6 sm:grid-cols-1">
                     <a href="{{ route('dashboard.stores.index') }}" class="bg-red-300 text-white block max-w-sm p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mis Tiendas</h5>
                         <p class="font-normal text-gray-700 dark:text-gray-400">
@@ -15,7 +13,14 @@
                     <a href="{{ route('dashboard.products.index') }}" class="bg-green-300 text-white block max-w-sm p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mis Productos</h5>
                         <p class="font-normal text-gray-700 dark:text-gray-400">
-                        Se muestran todos los productos que has creado en Anúncielo.com
+                            Se muestran todos los productos que has creado en Anúncielo.com
+                        </p>
+                    </a>
+
+                    <a href="{{ route('dashboard.restaurants.index') }}" class="bg-blue-300 text-white block max-w-sm p-6 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mis Restaurantes</h5>
+                        <p class="font-normal text-gray-700 dark:text-gray-400">
+                            Gestiona tus restaurantes, menús y categorías en Anúncielo.com
                         </p>
                     </a>
                 </div>

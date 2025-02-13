@@ -46,20 +46,20 @@ Route::get('stores/{store_url}/add-image', [ImageCtrl::class, 'addImageCover'])-
 Route::post('stores/{store_url}/save-image', [ImageCtrl::class, 'saveImageCover'])->name('dashboard.stores.saveImageCover')->middleware(['auth']);
 
 // Restaurant routes
+Volt::route('/restaurants', 'restaurants.public.index')->name('restaurants.index');
+Volt::route('/restaurants/{restaurant:url}', 'restaurants.public.show')->name('restaurants.show');
+Volt::route('/restaurants/{restaurant:url}/menu', 'restaurants.public.menu')->name('restaurants.menu');
+
+// Restaurant dashboard routes
 Volt::route('/dashboard/restaurants', 'restaurants.index')->name('dashboard.restaurants.index')->middleware(['auth']);
 Volt::route('/dashboard/restaurants/create', 'restaurants.create')->name('dashboard.restaurants.create')->middleware(['auth']);
 Volt::route('/dashboard/restaurants/{restaurant}/edit', 'restaurants.edit')->name('dashboard.restaurants.edit')->middleware(['auth']);
 Volt::route('/dashboard/restaurants/{restaurant}/menu', 'restaurants.menu')->name('dashboard.restaurants.menu')->middleware(['auth']);
-Volt::route('/dashboard/restaurants/{restaurant}/menu/create', 'restaurants.menu-item.create')->name('dashboard.restaurants.menu-item.create')->middleware(['auth']);
+Volt::route('/dashboard/restaurants/{restaurant}/menu/create', 'restaurants.menu-item-create')->name('dashboard.restaurants.menu-item.create')->middleware(['auth']);
 Volt::route('/dashboard/restaurants/{restaurant}/menu/{item}/edit', 'restaurants.menu-item.edit')->name('dashboard.restaurants.menu-item.edit')->middleware(['auth']);
 Volt::route('/dashboard/restaurants/{restaurant}/categories', 'restaurants.categories')->name('dashboard.restaurants.categories')->middleware(['auth']);
 Volt::route('/dashboard/restaurants/{restaurant}/categories/create', 'restaurants.category.create')->name('dashboard.restaurants.category.create')->middleware(['auth']);
 Volt::route('/dashboard/restaurants/{restaurant}/categories/{category}/edit', 'restaurants.category.edit')->name('dashboard.restaurants.category.edit')->middleware(['auth']);
-
-// Public restaurant routes
-Route::get('restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
-Route::get('restaurants/{url}', [RestaurantController::class, 'show'])->name('restaurants.show');
-Route::get('restaurants/{url}/menu', [RestaurantController::class, 'menu'])->name('restaurants.menu');
 
 //pages
 Route::view('/', 'pages.welcome')->name('welcome');

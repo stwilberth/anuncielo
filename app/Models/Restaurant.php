@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Restaurant extends Model
 {
@@ -27,6 +28,24 @@ class Restaurant extends Model
     protected $casts = [
         'active' => 'boolean',
     ];
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('active', true);
+        });
+    }
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'url';
+    }
 
     public function user(): BelongsTo
     {

@@ -1,7 +1,9 @@
 <?php
 
-use function Livewire\Volt\{state, mount};
+use function Livewire\Volt\{state, mount, layout};
 use App\Models\Restaurant;
+
+layout('layouts.app');
 
 state(['restaurants' => []]);
 
