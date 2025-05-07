@@ -1,0 +1,266 @@
+<section id="proyectos" class="proyectos">
+  <div class="container">
+    <div class="section-header">
+      <h2>Proyectos Destacados</h2>
+      <p>Conoce algunos de nuestros casos de éxito y los resultados que hemos logrado para nuestros clientes</p>
+    </div>
+    
+    <div class="proyectos-grid">
+      <div class="proyecto-card">
+        <div class="proyecto-image">
+          <img src="/images/proyecto-osanature.jpg" alt="Osa Nature Tours" />
+          <div class="proyecto-overlay">
+            <a href="https://osanaturetours.com" target="_blank" class="btn btn-sm btn-light">Ver sitio</a>
+          </div>
+        </div>
+        <div class="proyecto-content">
+          <h3>Osa Nature Tours</h3>
+          <p class="proyecto-categoria">Turismo Ecológico</p>
+          <p class="proyecto-descripcion">Rediseño completo del sitio web con enfoque en la experiencia de usuario y optimización para conversiones.</p>
+          <div class="proyecto-resultados">
+            <div class="resultado">
+              <span class="resultado-numero">+120%</span>
+              <span class="resultado-texto">Aumento en reservas</span>
+            </div>
+            <div class="resultado">
+              <span class="resultado-numero">+85%</span>
+              <span class="resultado-texto">Tráfico orgánico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="proyecto-card">
+        <div class="proyecto-image">
+          <img src="/images/proyecto-rioverde.jpg" alt="Rio Verde Ecolodge" />
+          <div class="proyecto-overlay">
+            <a href="https://rioverdeecolodge.com" target="_blank" class="btn btn-sm btn-light">Ver sitio</a>
+          </div>
+        </div>
+        <div class="proyecto-content">
+          <h3>Rio Verde Ecolodge</h3>
+          <p class="proyecto-categoria">Hospedaje Sostenible</p>
+          <p class="proyecto-descripcion">Desarrollo de plataforma web con sistema de reservas integrado y estrategia SEO para mercados internacionales.</p>
+          <div class="proyecto-resultados">
+            <div class="resultado">
+              <span class="resultado-numero">+95%</span>
+              <span class="resultado-texto">Reservas directas</span>
+            </div>
+            <div class="resultado">
+              <span class="resultado-numero">-40%</span>
+              <span class="resultado-texto">Dependencia de OTAs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="proyecto-card">
+        <div class="proyecto-image">
+          <img src="/images/proyecto-ecommerce.jpg" alt="Tienda Online" />
+          <div class="proyecto-overlay">
+            <a href="#" class="btn btn-sm btn-light">Ver sitio</a>
+          </div>
+        </div>
+        <div class="proyecto-content">
+          <h3>Tienda Artesanal</h3>
+          <p class="proyecto-categoria">E-commerce</p>
+          <p class="proyecto-descripcion">Implementación de tienda online con pasarela de pagos, gestión de inventario y estrategia de marketing digital.</p>
+          <div class="proyecto-resultados">
+            <div class="resultado">
+              <span class="resultado-numero">+200%</span>
+              <span class="resultado-texto">Ventas mensuales</span>
+            </div>
+            <div class="resultado">
+              <span class="resultado-numero">+65%</span>
+              <span class="resultado-texto">Tasa de conversión</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="proyectos-cta">
+      <a href="/#contacto" class="btn btn-primary">¿Listo para ser nuestro próximo caso de éxito?</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .proyectos {
+    padding: 6rem 0;
+    background-color: var(--color-light);
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.5rem;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .section-header p {
+    font-size: 1.25rem;
+    color: var(--color-gray);
+  }
+  
+  .proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+  }
+  
+  .proyecto-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .proyecto-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .proyecto-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+  
+  .proyecto-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .proyecto-card:hover .proyecto-image img {
+    transform: scale(1.1);
+  }
+  
+  .proyecto-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .proyecto-card:hover .proyecto-overlay {
+    opacity: 1;
+  }
+  
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-light {
+    background-color: white;
+    color: var(--color-dark);
+  }
+  
+  .btn-light:hover {
+    background-color: var(--color-primary);
+    color: white;
+  }
+  
+  .proyecto-content {
+    padding: 1.5rem;
+  }
+  
+  .proyecto-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+  }
+  
+  .proyecto-categoria {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  
+  .proyecto-descripcion {
+    font-size: 0.95rem;
+    color: var(--color-gray);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .proyecto-resultados {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 1rem;
+  }
+  
+  .resultado {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .resultado-numero {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+  
+  .resultado-texto {
+    font-size: 0.75rem;
+    color: var(--color-gray);
+  }
+  
+  .proyectos-cta {
+    text-align: center;
+  }
+  
+  @media (max-width: 1024px) {
+    .proyectos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .proyectos {
+      padding: 4rem 0;
+    }
+    
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .proyectos-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .proyecto-card {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>

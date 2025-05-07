@@ -1,22 +1,149 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "Anuncielo.com | Aumenta tus ventas con presencia digital profesional", 
+	description = "Potencia tu negocio con soluciones digitales que aumentan ventas y mejoran tu posicionamiento online. Desarrollo web, SEO y marketing digital profesional."
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Fuentes -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://anuncielo.com/" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/og-image.jpg" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://anuncielo.com/" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content="/og-image.jpg" />
 	</head>
 	<body>
-		<slot />
+		<header class="header">
+			<div class="container flex justify-between items-center" style="height: var(--header-height);">
+				<a href="/" class="logo">Anuncielo.com</a>
+				<nav class="nav">
+					<ul class="flex gap-4">
+						<li><a href="/#servicios">Servicios</a></li>
+						<li><a href="/#planes">Planes</a></li>
+						<li><a href="/#proyectos">Proyectos</a></li>
+						<li><a href="/#experiencia">Experiencia</a></li>
+						<li><a href="/#contacto" class="btn btn-primary">Contactar</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+
+		<footer class="footer bg-dark">
+			<div class="container py-5">
+				<div class="grid grid-3 gap-4">
+					<div>
+						<h3 class="mb-2">Anuncielo.com</h3>
+						<p>Soluciones digitales que aumentan ventas y mejoran tu posicionamiento online.</p>
+					</div>
+					<div>
+						<h3 class="mb-2">Enlaces</h3>
+						<ul>
+							<li><a href="/#servicios">Servicios</a></li>
+							<li><a href="/#planes">Planes</a></li>
+							<li><a href="/#proyectos">Proyectos</a></li>
+							<li><a href="/#experiencia">Experiencia</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="mb-2">Contacto</h3>
+						<p>Email: info@anuncielo.com</p>
+						<p>Teléfono: +506 8888-8888</p>
+					</div>
+				</div>
+				<div class="text-center mt-5">
+					<p>&copy; {new Date().getFullYear()} Anuncielo.com. Todos los derechos reservados.</p>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+	.header {
+		position: sticky;
+		top: 0;
+		background-color: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(5px);
+		box-shadow: var(--shadow-sm);
+		z-index: 100;
+	}
+
+	.logo {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--color-primary);
+	}
+
+	.nav ul {
+		list-style: none;
+	}
+
+	.nav a {
+		color: var(--color-dark);
+		font-weight: 500;
+	}
+
+	.nav a:hover {
+		color: var(--color-primary);
+	}
+
+	.footer {
+		background-color: var(--color-dark);
+		color: var(--color-light);
+	}
+
+	.footer a {
+		color: var(--color-gray-light);
+	}
+
+	.footer a:hover {
+		color: white;
+	}
+
+	.footer ul {
+		list-style: none;
+	}
+
+	.footer li {
+		margin-bottom: 0.5rem;
+	}
+
+	@media (max-width: 768px) {
+		.nav ul {
+			display: none;
+		}
 	}
 </style>

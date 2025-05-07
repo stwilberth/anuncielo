@@ -1,0 +1,28 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Laptop base -->
+  <rect x="150" y="100" width="300" height="200" rx="10" fill="#2563EB" />
+  
+  <!-- Laptop screen -->
+  <rect x="160" y="110" width="280" height="180" rx="5" fill="#FFFFFF" />
+  
+  <!-- Screen content - graph -->
+  <path d="M180 230 L220 190 L260 210 L300 150 L340 170 L380 130 L420 150" stroke="#10B981" stroke-width="3" />
+  
+  <!-- Screen content - bar chart -->
+  <rect x="200" y="240" width="20" height="30" fill="#3B82F6" />
+  <rect x="240" y="220" width="20" height="50" fill="#3B82F6" />
+  <rect x="280" y="200" width="20" height="70" fill="#3B82F6" />
+  <rect x="320" y="230" width="20" height="40" fill="#3B82F6" />
+  <rect x="360" y="210" width="20" height="60" fill="#3B82F6" />
+  
+  <!-- Decorative elements -->
+  <circle cx="450" cy="120" r="30" fill="#F59E0B" opacity="0.7" />
+  <circle cx="150" cy="280" r="40" fill="#10B981" opacity="0.5" />
+  <circle cx="400" cy="320" r="25" fill="#EF4444" opacity="0.6" />
+  
+  <!-- Abstract data visualization elements -->
+  <path d="M100 150 C120 120, 140 180, 160 150" stroke="#8B5CF6" stroke-width="3" />
+  <path d="M420 100 C440 80, 460 120, 480 100" stroke="#EC4899" stroke-width="3" />
+  <path d="M120 320 C140 300, 160 340, 180 320" stroke="#F59E0B" stroke-width="3" />
+  <path d="M400 350 C420 330, 440 370, 460 350" stroke="#3B82F6" stroke-width="3" />
+</svg>

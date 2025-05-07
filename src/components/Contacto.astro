@@ -1,0 +1,327 @@
+<section id="contacto" class="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="contacto-info">
+        <h2>¿Listo para impulsar tu negocio?</h2>
+        <p class="contacto-descripcion">Completa el formulario y nos pondremos en contacto contigo para discutir cómo podemos ayudarte a alcanzar tus objetivos comerciales.</p>
+        
+        <div class="contacto-metodos">
+          <div class="contacto-metodo">
+            <div class="metodo-icon">
+              <img src="/images/icon-email.svg" alt="Email" />
+            </div>
+            <div class="metodo-info">
+              <h3>Email</h3>
+              <p>info@anuncielo.com</p>
+            </div>
+          </div>
+          
+          <div class="contacto-metodo">
+            <div class="metodo-icon">
+              <img src="/images/icon-phone.svg" alt="Teléfono" />
+            </div>
+            <div class="metodo-info">
+              <h3>Teléfono</h3>
+              <p>+506 8888-8888</p>
+            </div>
+          </div>
+          
+          <div class="contacto-metodo">
+            <div class="metodo-icon">
+              <img src="/images/icon-location.svg" alt="Ubicación" />
+            </div>
+            <div class="metodo-info">
+              <h3>Ubicación</h3>
+              <p>San José, Costa Rica</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contacto-social">
+          <h3>Síguenos</h3>
+          <div class="social-links">
+            <a href="https://facebook.com/anuncielocom" target="_blank" class="social-link">
+              <img src="/images/icon-facebook.svg" alt="Facebook" />
+            </a>
+            <a href="https://instagram.com/anuncielocom" target="_blank" class="social-link">
+              <img src="/images/icon-instagram.svg" alt="Instagram" />
+            </a>
+            <a href="https://linkedin.com/company/anuncielocom" target="_blank" class="social-link">
+              <img src="/images/icon-linkedin.svg" alt="LinkedIn" />
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contacto-form">
+        <form id="formulario-contacto" action="#" method="POST">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" />
+          </div>
+          
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" />
+          </div>
+          
+          <div class="form-group full">
+            <label for="servicio">Servicio de interés</label>
+            <select id="servicio" name="servicio" required>
+              <option value="" disabled selected>Selecciona un servicio</option>
+              <option value="desarrollo-web">Desarrollo Web</option>
+              <option value="seo">Posicionamiento SEO</option>
+              <option value="correo">Correo Empresarial</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          
+          <div class="form-group full">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+          </div>
+          
+          <div class="form-group full">
+            <button type="submit" class="btn btn-primary btn-block">Enviar mensaje</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacto {
+    padding: 6rem 0;
+    background-color: #fff;
+  }
+  
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  
+  .contacto-info h2 {
+    font-size: 2.5rem;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .contacto-descripcion {
+    font-size: 1.1rem;
+    color: var(--color-gray);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+  
+  .contacto-metodos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .contacto-metodo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .metodo-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .metodo-icon img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .metodo-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.25rem;
+  }
+  
+  .metodo-info p {
+    font-size: 1rem;
+    color: var(--color-gray);
+  }
+  
+  .contacto-social h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-primary-light);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .social-link:hover {
+    background-color: var(--color-primary);
+  }
+  
+  .social-link img {
+    width: 20px;
+    height: 20px;
+    color: var(--color-dark);
+  }
+  
+  .contacto-form {
+    background-color: var(--color-light);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group.full {
+    grid-column: span 2;
+  }
+  
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--color-dark);
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--color-dark);
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .btn-block {
+    width: 100%;
+  }
+  
+  @media (max-width: 1024px) {
+    .contacto-grid {
+      gap: 3rem;
+    }
+    
+    .contacto-form {
+      padding: 2rem;
+    }
+  }
+  
+  .form-success {
+    background-color: #e6f7e6;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .form-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .contacto {
+      padding: 4rem 0;
+    }
+    
+    .contacto-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    
+    .contacto-info h2 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    form {
+      grid-template-columns: 1fr;
+    }
+    
+    .form-group.full {
+      grid-column: span 1;
+    }
+  }
+</style>
+
+<script>
+  // Función para manejar el envío del formulario
+  document.addEventListener('DOMContentLoaded', () => {
+    const formulario = document.getElementById('formulario-contacto');
+    
+    if (formulario) {
+      formulario.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Aquí se implementaría la lógica para enviar el formulario
+        // Por ejemplo, usando fetch para enviar los datos a un endpoint
+        
+        // Simulación de envío exitoso
+        alert('¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.');
+        formulario.reset();
+      });
+    }
+  });
+</script>
