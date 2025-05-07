@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home3/apren173/anuncielo.com/dist
+    - /bin/cp -r dist/* $DEPLOYPATH
