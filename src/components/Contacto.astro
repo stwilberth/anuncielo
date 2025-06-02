@@ -12,7 +12,7 @@
             </div>
             <div class="metodo-info">
               <h3>Email</h3>
-              <p>info@anuncielo.com</p>
+              <p>wilberth@anuncielo.com</p>
             </div>
           </div>
           
@@ -22,7 +22,7 @@
             </div>
             <div class="metodo-info">
               <h3>Teléfono</h3>
-              <p>+506 8888-8888</p>
+              <p>+506 85008393</p>
             </div>
           </div>
           
@@ -32,7 +32,7 @@
             </div>
             <div class="metodo-info">
               <h3>Ubicación</h3>
-              <p>San José, Costa Rica</p>
+              <p>Puerto Jiménez, Puntarenas, Costa Rica</p>
             </div>
           </div>
         </div>
@@ -54,7 +54,12 @@
       </div>
       
       <div class="contacto-form">
-        <form id="formulario-contacto" action="#" method="POST">
+        <form id="formulario-contacto" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contacto" />
+          <p class="hidden" style="display: none;">
+            <label>No llenar esto si eres humano: <input name="bot-field" /></label>
+          </p>
+          
           <div class="form-group">
             <label for="nombre">Nombre completo</label>
             <input type="text" id="nombre" name="nombre" required />
@@ -307,21 +312,12 @@
 </style>
 
 <script>
-  // Función para manejar el envío del formulario
+  // El formulario ahora es manejado por Netlify Forms
+  // No es necesario prevenir el comportamiento predeterminado
   document.addEventListener('DOMContentLoaded', () => {
     const formulario = document.getElementById('formulario-contacto');
     
-    if (formulario) {
-      formulario.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Aquí se implementaría la lógica para enviar el formulario
-        // Por ejemplo, usando fetch para enviar los datos a un endpoint
-        
-        // Simulación de envío exitoso
-        alert('¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.');
-        formulario.reset();
-      });
-    }
+    // Puedes agregar validaciones adicionales aquí si lo deseas
+    // pero Netlify manejará el envío y procesamiento del formulario
   });
 </script>

@@ -44,9 +44,9 @@ const {
 	<body>
 		<header class="header">
 			<div class="container flex justify-between items-center" style="height: var(--header-height);">
-				<a href="/" class="logo">Anuncielo.com</a>
+				<a href="/" class="logo">Anúncielo.com</a>
 				<nav class="nav">
-					<ul class="flex gap-4">
+					<ul class="flex items-center gap-4">
 						<li><a href="/#servicios">Servicios</a></li>
 						<li><a href="/#planes">Planes</a></li>
 						<li><a href="/#proyectos">Proyectos</a></li>
@@ -79,8 +79,9 @@ const {
 					</div>
 					<div>
 						<h3 class="mb-2">Contacto</h3>
-						<p>Email: info@anuncielo.com</p>
-						<p>Teléfono: +506 8888-8888</p>
+						<p>Email: wilberth@anuncielo.com</p>
+						<p>Teléfono: +506 8500-8393</p>
+						<p>Ubicación: Puerto Jiménez, Puntarenas, Costa Rica</p>
 					</div>
 				</div>
 				<div class="text-center mt-5">
@@ -118,6 +119,16 @@ const {
 
 	.nav a:hover {
 		color: var(--color-primary);
+	}
+
+	.nav .btn-primary {
+		background-color: var(--color-primary);
+		border: solid 2px var(--color-primary);
+		color: white;
+	}
+	.nav .btn-primary:hover {
+		background-color: transparent;
+		border: solid 2px var(--color-primary);
 	}
 
 	.footer {
