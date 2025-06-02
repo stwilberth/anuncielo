@@ -54,7 +54,7 @@
       </div>
       
       <div class="contacto-form">
-        <form id="formulario-contacto" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+        <form id="formulario-contacto" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
           <input type="hidden" name="form-name" value="contacto" />
           <input type="hidden" name="success_url" value="/" />
           <p class="hidden" style="display: none;">
@@ -313,12 +313,30 @@
 </style>
 
 <script>
-  // El formulario ahora es manejado por Netlify Forms
-  // No es necesario prevenir el comportamiento predeterminado
   document.addEventListener('DOMContentLoaded', () => {
+    const handleSubmit = event => { 
+      event.preventDefault(); 
+
+      const myForm = event.target; 
+      const formData = new FormData(myForm); 
+
+      fetch("/", { 
+        method: "POST", 
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }, 
+        body: new URLSearchParams(formData).toString() 
+      }) 
+        .then(() => {
+          console.log("Form successfully submitted");
+          // Opcional: Mostrar mensaje de éxito o redireccionar
+          alert('¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.');
+          myForm.reset();
+        }) 
+        .catch(error => alert(error)); 
+    }; 
+
     const formulario = document.getElementById('formulario-contacto');
-    
-    // Puedes agregar validaciones adicionales aquí si lo deseas
-    // pero Netlify manejará el envío y procesamiento del formulario
+    if (formulario) {
+      formulario.addEventListener("submit", handleSubmit);
+    }
   });
 </script>
