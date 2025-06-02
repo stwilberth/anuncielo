@@ -12,7 +12,7 @@
             </div>
             <div class="metodo-info">
               <h3>Email</h3>
-              <p>wilberth@anuncielo.com</p>
+              <p>info@anuncielo.com</p>
             </div>
           </div>
           
@@ -54,8 +54,9 @@
       </div>
       
       <div class="contacto-form">
-        <form id="formulario-contacto" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form id="formulario-contacto" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
           <input type="hidden" name="form-name" value="contacto" />
+          <input type="hidden" name="success_url" value="/" />
           <p class="hidden" style="display: none;">
             <label>No llenar esto si eres humano: <input name="bot-field" /></label>
           </p>
